@@ -11,7 +11,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import './News.scss'
+// import './News.scss'
 
 function News(props) {
     const apiKey = "7530f36a6fcf4ecda75ab4eb1213a9ee";
@@ -49,6 +49,8 @@ function News(props) {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
+            marginBottom: '5px',
+            cursor: 'pointer',
             alignItems: 'center',
             boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
             transition: 'all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)',
@@ -57,7 +59,7 @@ function News(props) {
             }
         },
         media: {
-            height: 300,
+            height: 250,
         },
         title: {
             overflow: 'hidden',
@@ -82,7 +84,7 @@ function News(props) {
     
     return (
         <div> 
-            <div className="all__news">
+            <div className="news-content">
                 {data
                     ? data.articles.map((news) => {
 

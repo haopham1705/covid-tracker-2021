@@ -17,9 +17,9 @@ export default function NotFound() {
     return (
         <div className="container not-found-content">
             <h1>Page Not Found</h1>
-            <p>We can't find the page you're looking.</p>
-            <p>You can either return to the previous page, visit our homepage.</p>
-            <Button className="btn" variant="contained" color="primary" href="#contained-buttons">
+            <p>We can't find the page you're looking.</p> 
+            <br/>
+            <Button href="/"color="primary" href="#contained-buttons">
                 Back to Home
             </Button>
         </div>

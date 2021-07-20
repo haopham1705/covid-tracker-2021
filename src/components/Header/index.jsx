@@ -15,15 +15,16 @@ import {
     Backdrop,
     Fade
 } from '@material-ui/core'
-import AccountBoxIcon from '@material-ui/icons/AccountBox' 
-import ArrowDropDownSharpIcon from '@material-ui/icons/ArrowDropDownSharp' 
-import { useSnackbar } from 'notistack'
+import AccountBoxIcon from '@material-ui/icons/AccountBox'
+import ArrowDropDownSharpIcon from '@material-ui/icons/ArrowDropDownSharp'  
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import LogInPage from 'pages/LogInPage'
+import ImgLogo from 'assets/img/anticovid-icon.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,12 +63,17 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
+    logo: {
+        width: '100%',
+        maxWidth: '80px'
+    }
 
 }))
 
 export default function Header(props) {
     const { isLoggedIn } = props 
     const dispatch = useDispatch()
+    const history = useHistory()
     const classes = useStyles()
     const [open, setOpen] = useState(false)
     const [mode, setMode] = useState('login')
@@ -102,6 +108,10 @@ export default function Header(props) {
 
         // dispatch(action)
         // enqueueSnackbar('Logout successfully!', { variant: 'success' })
+        
+            localStorage.clear();
+            history.push('/');
+        handleCloseMenu()
     }
 
     return (
@@ -110,17 +120,68 @@ export default function Header(props) {
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         <Link className={classes.link} to="/">
-                            Covid-Tracker
+                            <img className={classes.logo} src={ImgLogo} />
                         </Link>
                     </Typography>
                     {!isLoggedIn ? (
                         <>
-                            <Button color="inherit" onClick={handleClickOpen}>
+                        
+                            {/* <Button color="inherit" onClick={handleClickOpen}>
                                 <div className={classes.logged}>
                                     <AccountBoxIcon className={classes.menuButton} />
                                     <span style={{ textTransform: 'none' }}>Sign-in / Sign-up</span>
                                 </div>
+                            </Button> */}
+                        </>
+                    ) : (
+                        <div style={{ textAlign: 'right' }}>
+                                <Button style={{ marginRight: '15px' }}>
+                                    <Link className={classes.menuItem} to="/news">
+                                        News
+                                    </Link>
+                                </Button>
+                                <Button style={{ marginRight: '15px' }}>
+                                    <Link className={classes.menuItem} to="/chart">
+                                        Trackers
+                                    </Link>
+                                </Button>
+                               
+                                    
+                                {/* <Link style={{ marginRight: '10px' }} className={classes.menuItem} to="/">
+                                     Welcome Admin
+                                    </Link>  */}
+                            <Button
+                                color="inherit"
+                                className={classes.personLog}
+                                aria-controls="simple-menu"
+                                aria-haspopup="true"
+                                onClick={handleShowMenu}
+                            >
+                               
+                                <AccountBoxIcon />
+                                <ArrowDropDownSharpIcon />
                             </Button>
+                            <Menu
+                                id="simple-menu"
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                {/* <MenuItem onClick={handleCloseMenu}>Profile</MenuItem> */}
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            </Menu>
+                        </div>
+                    )}
+                </Toolbar>
+            </AppBar>
+        </div>
+    )
+}
+
+
+/*
+
                             <Modal
                                 aria-labelledby="transition-modal-title"
                                 aria-describedby="transition-modal-description"
@@ -164,53 +225,5 @@ export default function Header(props) {
                                         )}
                                     </div>
                                 </Fade>
-                            </Modal> 
-                        </>
-                    ) : (
-                        <div style={{ textAlign: 'right' }}>
-                                <Button style={{ marginRight: '15px' }}>
-                                    <Link className={classes.menuItem} to="/">
-                                        News
-                                    </Link>
-                                </Button>
-                                <Button style={{ marginRight: '15px' }}>
-                                    <Link className={classes.menuItem} to="/">
-                                        Chart
-                                    </Link>
-                                </Button>
-                               
-                                    
-                                <Link style={{ marginRight: '10px' }} className={classes.menuItem} to="/">
-                                     Welcome Admin
-                                    </Link>
-                                
-                                
-                               
-                            <Button
-                                color="inherit"
-                                className={classes.personLog}
-                                aria-controls="simple-menu"
-                                aria-haspopup="true"
-                                onClick={handleShowMenu}
-                            >
-                               
-                                <AccountBoxIcon />
-                                <ArrowDropDownSharpIcon />
-                            </Button>
-                            <Menu
-                                id="simple-menu"
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
-                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                            </Menu>
-                        </div>
-                    )}
-                </Toolbar>
-            </AppBar>
-        </div>
-    )
-}
+                            </Modal>
+*/

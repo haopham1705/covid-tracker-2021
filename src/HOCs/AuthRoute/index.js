@@ -13,7 +13,7 @@ function AuthRoute({ component: Component, ...rest }) {
                         <Component {...props} />
                     ) : (
                         <Redirect
-                            to={{ pathname: '/overview', state: { from: props.location } }}
+                            to={{ pathname: '/', state: { from: props.location } }}
                         />
                     );
                 }}
