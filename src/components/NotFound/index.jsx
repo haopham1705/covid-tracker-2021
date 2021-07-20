@@ -19,7 +19,7 @@ export default function NotFound() {
             <h1>Page Not Found</h1>
             <p>We can't find the page you're looking.</p> 
             <br/>
-            <Button href="/"color="primary" href="#contained-buttons">
+            <Button href="/"color="primary" href="/">
                 Back to Home
             </Button>
         </div>

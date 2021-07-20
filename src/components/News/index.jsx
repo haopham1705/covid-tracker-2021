@@ -29,8 +29,9 @@ function News(props) {
 
     const useStyles = makeStyles((theme) => ({
         wrapper: {
-            maxWidth: 1200,
+            maxWidth: '1200px',
             margin: '0 auto',
+            paddingTop: '3rem',
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
@@ -84,7 +85,7 @@ function News(props) {
     
     return (
         <div> 
-            <div className="news-content">
+            <div className={classes.wrapper}>
                 {data
                     ? data.articles.map((news) => {
 

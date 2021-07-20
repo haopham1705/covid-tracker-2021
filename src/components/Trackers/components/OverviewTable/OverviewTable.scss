@@ -1,0 +1,42 @@
+.overviewtable {
+  padding: 30px 20px;
+  margin-bottom: 100px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  .ant-table-content {
+    table {
+      border-radius: 100px;
+    }
+  }
+}
+.ant-table-thead > tr > th.ant-table-cell {
+  font-weight: bold;
+  width: 10px;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.62rem;
+  @media screen and (min-width: 376px) {
+    font-size: 1.1rem;
+  }
+  @media screen and (min-width: 769px) {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+  @media screen and (min-width: 1025px) {
+    width: 145px;
+    font-size: 1.3rem;
+  }
+}
+
+.ant-table-tbody > tr.ant-table-row > td.ant-table-cell {
+  padding: 2px;
+  text-align: center;
+  font-size: 0.5rem;
+  @media screen and (min-width: 376px) {
+    font-size: 0.8rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    font-size: 1.2rem;
+  }
+}

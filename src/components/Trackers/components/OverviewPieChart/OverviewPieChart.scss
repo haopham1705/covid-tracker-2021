@@ -1,0 +1,45 @@
+.overviewchart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: inherit;
+  animation: appear3;
+  margin: 2rem 0;
+  animation-duration: 8s;
+  width: 95vw;
+
+  @keyframes appear3 {
+    from {
+      opacity: 0.1;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    flex-direction: row;
+  }
+  .overviewpiechart {
+    border-radius: 20px;
+    padding: 0 15px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 0.2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 95vw;
+    height: 30vh;
+
+    @media screen and (min-width: 769px) {
+      width: 43vw;
+      height: 43vh;
+      margin-left: 2rem;
+    }
+    @media screen and (min-width: 1025px) {
+      width: 43vw;
+      height: 93vh;
+      margin-left: 2rem;
+    }
+  }
+}

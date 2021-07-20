@@ -3,7 +3,16 @@ import React from 'react'
 function Trackers() {
     return (
         <div>
-            <h1> Tracker </h1>
+            <div className="home">
+                tracker
+                {/* <OverviewCard /> */}
+                {/* <OverviewMap />
+                <div className="overviewchart">
+                    <OverviewLineChart />
+                    <OverviewPieChart />
+                </div> */}
+                {/* <OverviewTable /> */}
+            </div>
         </div>
     )
 }

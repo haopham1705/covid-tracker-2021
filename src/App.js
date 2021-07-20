@@ -22,8 +22,8 @@ function App() {
       <Switch>
         <AuthRoute path="/public" component={PublicPage} />
         <PrivateRoute path="/" component={HomePage} />
-        <PrivateRoute path="/news" component={News} />
-        <PrivateRoute path="/trackers" component={Trackers} />
+        {/* <PrivateRoute path="/news" component={News} />
+        <PrivateRoute path="/trackers" component={Trackers} /> */}
         <Route component={NotFound} />
       </Switch>
     </div>

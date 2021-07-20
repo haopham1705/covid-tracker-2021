@@ -141,7 +141,7 @@ export default function Header(props) {
                                     </Link>
                                 </Button>
                                 <Button style={{ marginRight: '15px' }}>
-                                    <Link className={classes.menuItem} to="/chart">
+                                    <Link className={classes.menuItem} to="/trackers">
                                         Trackers
                                     </Link>
                                 </Button>

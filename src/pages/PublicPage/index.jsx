@@ -39,7 +39,10 @@ const useStyles = makeStyles((theme) => ({
     },
     logged: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        border: '1px solid',
+        padding: '3px',
+        borderRadius: '5px',
     },
     redirect: {
         textTransform: 'unset'
@@ -61,6 +64,13 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
+    news_content: {
+        width: '100%',
+        maxWidth: '1200px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 
 }))
 function PublicPage(props) {
@@ -122,15 +132,18 @@ function PublicPage(props) {
     }
 
     return (
-        <Container className="main-content">
+        <>
             <Button color="inherit" onClick={handleClickOpen}>
                 <div className={classes.logged}>
                     <AccountBoxIcon className={classes.menuButton} />
                     <span style={{ textTransform: 'none' }}>Sign-in / Sign-up</span>
                 </div>
             </Button>
+            <Container className={classes.news_content}>
 
             <News />
+            </Container>
+
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -175,7 +188,7 @@ function PublicPage(props) {
                     </div>
                 </Fade>
             </Modal>
-        </Container>
+        </>
     );
 }
 

@@ -4,7 +4,7 @@ import Trackers from 'components/Trackers'
 import News from 'components/News'
 import NotFound from 'components/NotFound'
 import { Route, Switch, useRouteMatch } from "react-router";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
 import { Container } from '@material-ui/core'
 
 
@@ -22,8 +22,10 @@ export default function HomePage() {
             <Container>
                 {/* <News /> */}
                 <Switch>
-                    <Route path={match.path} component={News} exact />
-                    <Route path={match.path} component={Trackers} exact />
+                    <Redirect from="/" to="/news" exact />
+
+                    <Route path='/news' component={News} exact />
+                    <Route path='/trackers' component={Trackers} exact />
                     <Route component={NotFound} />
                 </Switch>
             </Container>

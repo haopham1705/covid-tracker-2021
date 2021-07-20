@@ -1,0 +1,127 @@
+.overviewlinechart {
+  background: inherit;
+  padding: 20px;
+  width: 95vw;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin: 30px 0;
+  font-size: 1em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+  animation: appear2;
+  animation-duration: 4s;
+
+  @keyframes appear2 {
+    from {
+      opacity: 0.1;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @media screen and (min-width: 400px) {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+  @media screen and (min-width: 769px) {
+    font-size: 1.2rem;
+    width: 50%;
+    background: linear-gradient(to right, #d0dbd0, #ffffff);
+  }
+  @media screen and (min-width: 1025px) {
+    font-size: 2rem;
+    height: 100%;
+    width: 50%;
+    align-self: flex-start;
+    margin-left: 1rem;
+  }
+  .linechart {
+    letter-spacing: 0px;
+    padding: 0;
+    font-size: 0.4rem;
+  }
+
+  .rangepicker {
+    background: inherit;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    width: 80%;
+    @media screen and (min-width: 376px) {
+      width: 40%;
+    }
+    @media screen and (min-width: 769px) {
+      width: 30%;
+    }
+    @media screen and (min-width: 1025px) {
+      width: 50%;
+    }
+  }
+}
+
+.ant-picker {
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 3px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 8px;
+  @media screen and (min-width: 376px) {
+    padding: 6px;
+    font-size: 1.2rem;
+  }
+  @media screen and (min-width: 769px) {
+    font-size: 1.5rem;
+  }
+  &:hover {
+    border: black solid 1px;
+  }
+  > .ant-picker-input {
+    > input {
+      text-align: center;
+      letter-spacing: 4px;
+      font-weight: bold;
+      &::placeholder {
+        color: black;
+        font-weight: bold;
+      }
+    }
+  }
+  > .ant-picker-range-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    * svg {
+      color: black;
+    }
+  }
+  > * {
+    color: black;
+  }
+}
+
+.lineskeleton {
+  width: 95vw;
+  border-radius: 15px;
+  @media screen and (min-width: 769px) {
+    width: 45vw;
+  }
+  .ant-skeleton-content {
+    .ant-skeleton-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-left: 4rem;
+    }
+    .ant-skeleton-paragraph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      > li {
+        width: 90%;
+      }
+    }
+  }
+}
