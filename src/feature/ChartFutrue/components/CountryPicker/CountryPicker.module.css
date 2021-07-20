@@ -1,0 +1,14 @@
+.formControl {
+    width: 30%;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.selectLabel {
+    color: var(--on-background) !important;
+}
+
+@media (max-width: 770px) {
+    .formControl {
+        width: 100%;
+    }
+}
