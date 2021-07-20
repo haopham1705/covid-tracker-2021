@@ -1,32 +1,22 @@
 import {
-    AppBar,
-    Badge,
-    Box,
-    Button,
-    Dialog,
-    DialogActions,
-    IconButton,
-    makeStyles,
-    Menu,
-    MenuItem,
-    Toolbar,
-    Typography,
-    Modal,
-    Backdrop,
-    Fade,
-    Container
-} from '@material-ui/core'
-import AccountBoxIcon from '@material-ui/icons/AccountBox'
-
-import React, { useState, useEffect } from 'react';
+    Backdrop, Box,
+    Button, Container, Fade, makeStyles, Modal
+} from '@material-ui/core';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import News from 'components/News';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import News from 'components/News'
-import RegisterForm from './components/RegisterForm'
-import LoginForm from './components/LoginForm'
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+    },
+    wrapper: {
+        paddingTop: '2rem',
+        textAlign: 'center',
     },
     menuButton: {
         marginRight: theme.spacing(2)
@@ -41,8 +31,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         border: '1px solid',
-        padding: '3px',
+        padding: '5px 8px',
         borderRadius: '5px',
+        backgroundColor: '#07b45d',
+        color: '#fff', 
+
     },
     redirect: {
         textTransform: 'unset'
@@ -132,7 +125,7 @@ function PublicPage(props) {
     }
 
     return (
-        <>
+        <Container className={classes.wrapper}>
             <Button color="inherit" onClick={handleClickOpen}>
                 <div className={classes.logged}>
                     <AccountBoxIcon className={classes.menuButton} />
@@ -188,7 +181,7 @@ function PublicPage(props) {
                     </div>
                 </Fade>
             </Modal>
-        </>
+        </Container>
     );
 }
 

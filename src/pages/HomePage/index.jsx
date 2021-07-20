@@ -19,8 +19,7 @@ export default function HomePage() {
     return (
         <>
             <Header isLoggedIn={checkLogin} />
-            <Container>
-                {/* <News /> */}
+            <Container> 
                 <Switch>
                     <Redirect from="/" to="/news" exact />
 

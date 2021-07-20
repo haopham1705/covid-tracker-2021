@@ -112,7 +112,7 @@ function News(props) {
                             </Card>
                         )
                     })
-                    : (<h2 className="msg-not-found">News is loading!</h2>)}
+                    : (<h2 className="msg-not-found">Loading...</h2>)}
             </div>
         </div>
     );
