@@ -3,13 +3,16 @@ import {
     Button, Container, Fade, makeStyles, Modal
 } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import News from 'components/News';
-import React, { useState } from 'react';
+import numeral from "numeral"; 
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import News from 'components/News';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import InfoBox from 'components/Trackers/components/InfoBox'
 import LineGraph from 'components/Trackers/components/LineGraph'
+import { sortData, prettyPrintStat } from "components/Trackers/components/util";
+
 
 
 
@@ -83,6 +86,10 @@ function PublicPage(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(true); 
+
+    const [casesType, setCasesType] = useState("cases");
+    const [countryInfo, setCountryInfo] = useState({});
+
     const history = useHistory();
  
 
@@ -137,12 +144,45 @@ function PublicPage(props) {
         setMode('register')
     }
 
+    // Get stats
+    useEffect(() => {
+        fetch("https://disease.sh/v3/covid-19/all")
+            .then((response) => response.json())
+            .then((data) => {
+                setCountryInfo(data);
+            });
+    }, []);
+
     return (
         <>
             <h1 className={classes.headTitle}>Covid19 - Tracker Website </h1>
 
             <Container className={classes.wrapper}>
-                <InfoBox/>
+                <div className="tracker-content__stats">
+                    <InfoBox
+                        onClick={(e) => setCasesType("cases")}
+                        title="Coronavirus Cases"
+                        isRed
+                        active={casesType === "cases"}
+                        cases={prettyPrintStat(countryInfo.todayCases)}
+                        total={numeral(countryInfo.cases).format("0.0a")}
+                    />
+                    <InfoBox
+                        onClick={(e) => setCasesType("recovered")}
+                        title="Recovered"
+                        active={casesType === "recovered"}
+                        cases={prettyPrintStat(countryInfo.todayRecovered)}
+                        total={numeral(countryInfo.recovered).format("0.0a")}
+                    />
+                    <InfoBox
+                        onClick={(e) => setCasesType("deaths")}
+                        title="Deaths"
+                        isRed
+                        active={casesType === "deaths"}
+                        cases={prettyPrintStat(countryInfo.todayDeaths)}
+                        total={numeral(countryInfo.deaths).format("0.0a")}
+                    />
+                </div>
                 <Button color="inherit" onClick={handleClickOpen}>
                     <div className={classes.logged}>
                         <AccountBoxIcon className={classes.menuButton} />
