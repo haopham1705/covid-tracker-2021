@@ -6,31 +6,38 @@ import {
     CardContent,
     CardMedia,
     Link,
-    Typography
+    Typography,
+    Container,
+    Box
 } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import newsApi from 'api/newsApi'
 // import './News.scss'
 
-function News(props) {
-    const apiKey = "7530f36a6fcf4ecda75ab4eb1213a9ee";
+function News(props) { 
 
     const [data, setData] = useState();
 
-    useEffect(() => {
-        axios
-            .get(
-                `http://newsapi.org/v2/everything?domains=who.int&language=en&apiKey=${apiKey}`
-            )
-            .then((response) => setData(response.data))
-            .catch((error) => console.log(error));
-    }, []); 
+    useEffect(() => { 
+        const fetchNews = async () => {
+            const params = {
+                qinTitle: 'covid19',
+                from: '2021-07-01',
+                apiKey: '7530f36a6fcf4ecda75ab4eb1213a9ee',
+            }
+                const productList = await newsApi.getNewsPoplularity(params);
+            setData(productList);
+            console.log(data)
+        };
+        fetchNews();
+    }, [])
 
     const useStyles = makeStyles((theme) => ({
         wrapper: {
             maxWidth: '1200px',
-            margin: '0 auto',
             paddingTop: '3rem',
             display: 'flex',
             flexWrap: 'wrap',
@@ -46,7 +53,8 @@ function News(props) {
         },
         card: {
             width: '100%',
-            maxWidth: 350,
+            maxWidth: 300,
+            height: 'auto',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -69,7 +77,6 @@ function News(props) {
             color: '#000',
             textAlign: 'center'
         },
-
         button: {
             background: 'linear-gradient(45deg, #2979ff 30%, #5a93f6 90%)',
             border: 0,
@@ -78,54 +85,74 @@ function News(props) {
             color: 'white',
             height: 30,
             padding: '0 30px',
+        },
+        skeleton_load: {
+            width: '100%',
+            display: 'flex',
+            flexWrap: 'wrap',
+
         }
     }))
 
     const classes = useStyles()
-    
+
     return (
-        <div> 
+        <div>
             <div className={classes.wrapper}>
                 {data
                     ? data.articles.map((news) => {
-
                         const { url, title, description, urlToImage } = news;
+
                         return (
                             <Card className={classes.card} key={url}>
                                 <Link className={classes.link} href={url}>
                                     <CardActionArea>
-                                        <CardMedia
-                                            className={classes.media}
-                                            image={urlToImage}
-                                            title={title}
-                                        />
-                                        <CardContent>
-                                            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                                                {title}
-                                            </Typography>
-                                            <Typography variant="body2" color="textPrimary" component="h4">
-                                                {description}
-                                            </Typography>
-                                        </CardContent>
+                                        {news ? (
+                                            <CardMedia
+                                                className={classes.media}
+                                                image={urlToImage}
+                                                title={title}
+                                            />
+                                        ) : (
+                                            <Skeleton variant="rect" width='100%' height={258} />
+                                        )}
+                                        {news ? (
+                                            <CardContent>
+                                                <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                                                    {title}
+                                                </Typography>
+                                                <Typography variant="body2" color="textPrimary" component="h4">
+                                                    {description}
+                                                </Typography>
+                                            </CardContent>
+                                        ) : (
+                                            <Box pt={0.5}>
+                                                <Skeleton />
+                                                <Skeleton width="95%" height={80} />
+                                            </Box>
+                                        )}
                                     </CardActionArea>
-                                </Link> 
+                                </Link>
                             </Card>
                         )
                     })
-                    : (<h2 className="msg-not-found">Loading...</h2>)}
+                    : (
+                        <>
+                            <Card className={classes.card} > 
+                                    <CardActionArea>
+                                        <Skeleton variant="rect" width='100%' height={258} />
+                                        <Box pt={0.5}>
+                                            <Skeleton />
+                                            <Skeleton width="95%" height={80} />
+                                        </Box>
+                                    </CardActionArea> 
+                            </Card>
+                        </>
+                        // <h2 className="msg-not-found">Loading..</h2>
+                    )}
             </div>
         </div>
     );
 }
 
-export default News;
-
-// <NewsArticle data={news} key={news.url} />
-
-                        // <div className="news" key={news.url} >
-                        //     <h1 className="news__title">{news.title}</h1>
-                        //     <p className="news__desc">{news.description}</p>
-                        //     <span className="news__author">{news.author}</span> <br />
-                        //     <span className="news__published">{news.publishedAt}</span>
-                        //     <span className="news__source">{news.source.name}</span>
-                        // </div>
+export default News; 

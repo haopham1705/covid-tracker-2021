@@ -53,15 +53,17 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
+        margin: '0 1rem',
+        borderRadius: '10px'
     },
     news_content: {
         width: '100%',
         maxWidth: '1200px',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'center', 
+        flexWrap:'wrap',
         alignItems: 'center',
     }
 
@@ -126,16 +128,15 @@ function PublicPage(props) {
 
     return (
         <Container className={classes.wrapper}>
+            
             <Button color="inherit" onClick={handleClickOpen}>
                 <div className={classes.logged}>
                     <AccountBoxIcon className={classes.menuButton} />
                     <span style={{ textTransform: 'none' }}>Sign-in / Sign-up</span>
                 </div>
-            </Button>
-            <Container className={classes.news_content}>
+            </Button> 
 
-            <News />
-            </Container>
+            <News /> 
 
             <Modal
                 aria-labelledby="transition-modal-title"

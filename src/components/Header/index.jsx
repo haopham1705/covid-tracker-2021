@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-import LogInPage from 'feature/LogInPage'
+import LogInPage from 'feature/LogInPage' 
 import ImgLogo from 'assets/img/anticovid-icon.png'
 
 const useStyles = makeStyles((theme) => ({
