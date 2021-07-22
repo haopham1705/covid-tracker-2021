@@ -12,7 +12,7 @@ import LineGraph from "./components/LineGraph";
 import Table from "./components/Table";
 import { sortData, prettyPrintStat } from "./components/util";
 import numeral from "numeral";
-import Map from "./components/Maps";
+import Map from "./components/Map";
 import "leaflet/dist/leaflet.css";
 
 function Trackers() {
@@ -75,7 +75,7 @@ function Trackers() {
         <div className="tracker-content">
             <div className="tracker-content__left">
                 <div className="tracker-content__header">
-                    <h1>Covid Tracker</h1>
+                    <h1>Tracking Covid</h1>
                     <FormControl className="tracker-content__dropdown">
                         <Select
                             variant="outlined"

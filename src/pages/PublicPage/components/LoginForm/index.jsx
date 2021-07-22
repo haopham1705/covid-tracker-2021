@@ -31,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-    },
+        backgroundColor: 'var(--primary-color)',
+        color: '#fff',
+        fontWeight: 'bold' 
+    }, 
 }));
 
 export default function LoginForm() {
@@ -107,8 +110,7 @@ export default function LoginForm() {
                         <Button
                             type="submit"
                             fullWidth
-                            variant="contained"
-                            color="primary"
+                            variant="contained" 
                             className={classes.submit}
                             onClick={handleLogin}
                         >

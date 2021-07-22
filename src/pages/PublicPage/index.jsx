@@ -8,6 +8,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import InfoBox from 'components/Trackers/components/InfoBox'
+import LineGraph from 'components/Trackers/components/LineGraph'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +19,14 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapper: {
         paddingTop: '2rem',
+        textAlign: 'center',
+    },
+    headTitle: {
+        fontSize: '3rem',
+        fontWeight: '550',
+        color: 'var(--white-color)',
+        backgroundColor: 'var(--primary-color)',
+        padding: '0.5rem 1rem',
         textAlign: 'center',
     },
     menuButton: {
@@ -127,62 +138,66 @@ function PublicPage(props) {
     }
 
     return (
-        <Container className={classes.wrapper}>
-            
-            <Button color="inherit" onClick={handleClickOpen}>
-                <div className={classes.logged}>
-                    <AccountBoxIcon className={classes.menuButton} />
-                    <span style={{ textTransform: 'none' }}>Sign-in / Sign-up</span>
-                </div>
-            </Button> 
+        <>
+            <h1 className={classes.headTitle}>Covid19 - Tracker Website </h1>
 
-            <News /> 
-
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Fade in={open}>
-                    <div className={classes.paper}>
-                        {mode === 'register' && (
-                            <>
-                                <RegisterForm />
-                                <Box textAlign="right" className={classes.menuButton}>
-                                    <Button
-                                        className={classes.redirect}
-                                        onClick={handleRedirectLogin}
-                                        color="primary"
-                                    >Already have an account? Sign in
-                                    </Button>
-                                </Box>
-                            </>
-                        )}
-                        {mode === 'login' && (
-                            <>
-                                <LoginForm />
-                                <Box textAlign="right" className={classes.menuButton}>
-                                    <Button
-                                        className={classes.redirect}
-                                        onClick={handleRedirectRegister}
-                                        color="primary"
-                                    >
-                                        Don't have an account? Sign Up
-                                    </Button>
-                                </Box>
-                            </>
-                        )}
+            <Container className={classes.wrapper}>
+                <InfoBox/>
+                <Button color="inherit" onClick={handleClickOpen}>
+                    <div className={classes.logged}>
+                        <AccountBoxIcon className={classes.menuButton} />
+                        <span style={{ textTransform: 'capitalize' }}>Sign In</span>
                     </div>
-                </Fade>
-            </Modal>
-        </Container>
+                </Button>
+
+                <News />
+
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classes.modal}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={open}>
+                        <div className={classes.paper}>
+                            {mode === 'register' && (
+                                <>
+                                    <RegisterForm />
+                                    <Box textAlign="right" className={classes.menuButton}>
+                                        <Button
+                                            className={classes.redirect}
+                                            onClick={handleRedirectLogin}
+                                            color="primary"
+                                        >Already have an account? Sign in
+                                        </Button>
+                                    </Box>
+                                </>
+                            )}
+                            {mode === 'login' && (
+                                <>
+                                    <LoginForm />
+                                    <Box textAlign="right" className={classes.menuButton}>
+                                        <Button
+                                            className={classes.redirect}
+                                            onClick={handleRedirectRegister}
+                                            color="primary"
+                                        >
+                                            Don't have an account? Sign Up
+                                        </Button>
+                                    </Box>
+                                </>
+                            )}
+                        </div>
+                    </Fade>
+                </Modal>
+            </Container>
+        </>
     );
 }
 

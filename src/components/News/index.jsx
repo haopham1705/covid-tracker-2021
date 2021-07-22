@@ -1,34 +1,26 @@
 import {
-    Button,
-    Card,
-    CardActionArea,
-    LinearProgress,
-    CardContent,
-    CardMedia,
-    Link,
-    Typography,
-    Container,
-    Box
+    Box, Card,
+    CardActionArea, CardContent,
+    CardMedia, Grid, Link,
+    Typography
 } from '@material-ui/core';
-import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios'
-import newsApi from 'api/newsApi'
-// import './News.scss'
+import Skeleton from '@material-ui/lab/Skeleton';
+import newsApi from 'api/newsApi';
+import React, { useEffect, useState } from 'react'; 
 
-function News(props) { 
+function News(props) {
 
     const [data, setData] = useState();
 
-    useEffect(() => { 
+    useEffect(() => {
         const fetchNews = async () => {
             const params = {
-                qinTitle: 'covid19',
-                from: '2021-07-01',
+                qinTitle: 'covid 19',
+                from: '2021-07-10',
                 apiKey: '7530f36a6fcf4ecda75ab4eb1213a9ee',
             }
-                const productList = await newsApi.getNewsPoplularity(params);
+            const productList = await newsApi.getNewsPoplularity(params);
             setData(productList);
             console.log(data)
         };
@@ -36,6 +28,8 @@ function News(props) {
     }, [])
 
     const useStyles = makeStyles((theme) => ({
+        root: { 
+        },
         wrapper: {
             maxWidth: '1200px',
             paddingTop: '3rem',
@@ -58,9 +52,8 @@ function News(props) {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            marginBottom: '5px',
-            cursor: 'pointer',
-            alignItems: 'center',
+            marginBottom: '3px  5px',
+            cursor: 'pointer', 
             boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
             transition: 'all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)',
             '&:hover': {
@@ -87,10 +80,29 @@ function News(props) {
             padding: '0 30px',
         },
         skeleton_load: {
-            width: '100%',
             display: 'flex',
             flexWrap: 'wrap',
-
+            justifyContent: 'center',
+            spacing: '5px',
+            flexGrow: 1,
+        },
+        news_content: { 
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            alignContent: 'start'
+        },
+        discription: {
+            color: 'var(--text-color)',
+            textAlign: 'left',
+        },
+        date_news: {
+            width: '100%',
+            marginTop: '5px',
+            fontSize: '0.8rem',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            color: 'var(--grey-color)'
         }
     }))
 
@@ -101,7 +113,7 @@ function News(props) {
             <div className={classes.wrapper}>
                 {data
                     ? data.articles.map((news) => {
-                        const { url, title, description, urlToImage } = news;
+                        const { url, title, description, urlToImage, publishedAt } = news;
 
                         return (
                             <Card className={classes.card} key={url}>
@@ -117,13 +129,17 @@ function News(props) {
                                             <Skeleton variant="rect" width='100%' height={258} />
                                         )}
                                         {news ? (
-                                            <CardContent>
+                                            <CardContent className={classes.news_content}>
                                                 <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                                                     {title}
                                                 </Typography>
-                                                <Typography variant="body2" color="textPrimary" component="h4">
+                                                <Typography variant="body2" color="textPrimary" component="h5" className={classes.discription}>
                                                     {description}
                                                 </Typography>
+                                                <Typography variant="p" color="textPrimary" component="p" className={classes.date_news}>
+                                                     {publishedAt} 
+                                                </Typography>
+                                                
                                             </CardContent>
                                         ) : (
                                             <Box pt={0.5}>
@@ -137,17 +153,44 @@ function News(props) {
                         )
                     })
                     : (
-                        <>
-                            <Card className={classes.card} > 
-                                    <CardActionArea>
+                        <div className={classes.skeleton_load}>
+                            <Card className={classes.card}>
+                                <CardActionArea >
+                                    <Grid item xs>
                                         <Skeleton variant="rect" width='100%' height={258} />
                                         <Box pt={0.5}>
                                             <Skeleton />
                                             <Skeleton width="95%" height={80} />
                                         </Box>
-                                    </CardActionArea> 
+                                    </Grid>
+                                </CardActionArea>
                             </Card>
-                        </>
+
+                            <Card className={classes.card}>
+                                <CardActionArea >
+                                    <Grid item xs>
+                                        <Skeleton variant="rect" width='100%' height={258} />
+                                        <Box pt={0.5}>
+                                            <Skeleton />
+                                            <Skeleton width="95%" height={80} />
+                                        </Box>
+                                    </Grid>
+                                </CardActionArea>
+                            </Card>
+                            
+                            <Card className={classes.card}>
+                                <CardActionArea >
+                                    <Grid item xs>
+                                        <Skeleton variant="rect" width='100%' height={258} />
+                                        <Box pt={0.5}>
+                                            <Skeleton />
+                                            <Skeleton width="95%" height={80} />
+                                        </Box>
+                                    </Grid>
+                                </CardActionArea>
+                            </Card>
+
+                        </div>
                         // <h2 className="msg-not-found">Loading..</h2>
                     )}
             </div>

@@ -1,43 +1,43 @@
 import {
-    AppBar,
-    Badge,
-    Box,
-    Button,
-    Dialog,
-    DialogActions,
-    IconButton,
-    makeStyles,
+    AppBar, Button, makeStyles,
     Menu,
     MenuItem,
     Toolbar,
-    Typography,
-    Modal,
-    Backdrop,
-    Fade
+    Typography
 } from '@material-ui/core'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
-import ArrowDropDownSharpIcon from '@material-ui/icons/ArrowDropDownSharp'  
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
-import LoginForm from './components/LoginForm'
-import RegisterForm from './components/RegisterForm'
-import LogInPage from 'feature/LogInPage' 
+import ArrowDropDownSharpIcon from '@material-ui/icons/ArrowDropDownSharp'
 import ImgLogo from 'assets/img/anticovid-icon.png'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1
     },
+    appbar: {
+        backgroundColor: 'var(--primary-color)',
+    },
+    toolbar: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
     menuButton: {
         marginRight: theme.spacing(2)
     },
-    title: {
-        flexGrow: 1
+    maintitle: {
+
     },
-    link: {
+    mainLogo: {
         color: 'white',
+        display: 'flex',
+        justifyContent: 'start',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        fontSize: '1.8rem',
+        textTransform: 'uppercase',
     },
     logged: {
         display: 'flex',
@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#2e40a2'
     },
     menuItem: {
-        color: 'white'
+        color: 'white',
+        fontWeight: '550',
     },
     modal: {
         display: 'flex',
@@ -66,12 +67,14 @@ const useStyles = makeStyles((theme) => ({
     logo: {
         width: '100%',
         maxWidth: '80px'
+    },
+    language_select: {
     }
 
 }))
 
 export default function Header(props) {
-    const { isLoggedIn } = props 
+    const { isLoggedIn } = props
     const dispatch = useDispatch()
     const history = useHistory()
     const classes = useStyles()
@@ -104,28 +107,26 @@ export default function Header(props) {
     }
 
     const handleLogout = () => {
-        // const action = logout()
-
-        // dispatch(action)
-        // enqueueSnackbar('Logout successfully!', { variant: 'success' })
-        
-            localStorage.clear();
-            history.push('/');
+        localStorage.clear();
+        history.push('/');
         handleCloseMenu()
     }
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
+            <AppBar position="static" className={classes.appbar}>
+                <Toolbar className={classes.toolbar}>
                     <Typography variant="h6" className={classes.title}>
                         <Link className={classes.link} to="/">
-                            <img className={classes.logo} src={ImgLogo} />
+                            <div className={classes.mainLogo}>
+                                <img className={classes.logo} src={ImgLogo} />
+                                <h2 className={classes.maintitle}>Covid Tracker</h2>
+                            </div>
                         </Link>
                     </Typography>
                     {!isLoggedIn ? (
                         <>
-                        
+
                             {/* <Button color="inherit" onClick={handleClickOpen}>
                                 <div className={classes.logged}>
                                     <AccountBoxIcon className={classes.menuButton} />
@@ -135,19 +136,19 @@ export default function Header(props) {
                         </>
                     ) : (
                         <div style={{ textAlign: 'right' }}>
-                                <Button style={{ marginRight: '15px' }}>
-                                    <Link className={classes.menuItem} to="/news">
-                                        News
-                                    </Link>
-                                </Button>
-                                <Button style={{ marginRight: '15px' }}>
-                                    <Link className={classes.menuItem} to="/trackers">
-                                        Trackers
-                                    </Link>
-                                </Button>
-                               
-                                    
-                                {/* <Link style={{ marginRight: '10px' }} className={classes.menuItem} to="/">
+                            <Button style={{ marginRight: '15px' }}>
+                                <Link className={classes.menuItem} to="/news">
+                                    News
+                                </Link>
+                            </Button>
+                            <Button style={{ marginRight: '15px' }}>
+                                <Link className={classes.menuItem} to="/trackers">
+                                    Trackers
+                                </Link>
+                            </Button>
+
+
+                            {/* <Link style={{ marginRight: '10px' }} className={classes.menuItem} to="/">
                                      Welcome Admin
                                     </Link>  */}
                             <Button
@@ -156,17 +157,27 @@ export default function Header(props) {
                                 aria-controls="simple-menu"
                                 aria-haspopup="true"
                                 onClick={handleShowMenu}
-                            >
-                               
-                                <AccountBoxIcon />
+                                className={classes.language_select}
+                            >VN / EN
                                 <ArrowDropDownSharpIcon />
+                            </Button>
+                            <Button
+                                color="inherit"
+                                className={classes.personLog}
+                                aria-controls="simple-menu"
+                                aria-haspopup="true"
+                                onClick={handleShowMenu}
+                            >
+
+                                <AccountBoxIcon />
+                                {/* <ArrowDropDownSharpIcon /> */}
                             </Button>
                             <Menu
                                 id="simple-menu"
                                 anchorEl={anchorEl}
                                 keepMounted
                                 open={Boolean(anchorEl)}
-                                onClose={handleClose}
+                                onClose={handleCloseMenu}
                             >
                                 {/* <MenuItem onClick={handleCloseMenu}>Profile</MenuItem> */}
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -178,52 +189,3 @@ export default function Header(props) {
         </div>
     )
 }
-
-
-/*
-
-                            <Modal
-                                aria-labelledby="transition-modal-title"
-                                aria-describedby="transition-modal-description"
-                                className={classes.modal}
-                                open={open}
-                                onClose={handleClose}
-                                closeAfterTransition
-                                BackdropComponent={Backdrop}
-                                BackdropProps={{
-                                    timeout: 500,
-                                }}
-                            >
-                                <Fade in={open}>
-                                    <div className={classes.paper}>
-                                        {mode === 'register' && (
-                                            <>
-                                                <RegisterForm />
-                                                <Box textAlign="right" className={classes.menuButton}>
-                                                    <Button
-                                                        className={classes.redirect}
-                                                        onClick={handleRedirectLogin}
-                                                        color="primary"
-                                                    >Already have an account? Sign in
-                                                    </Button>
-                                                </Box>
-                                            </>
-                                        )}
-                                        {mode === 'login' && (
-                                            <>
-                                                <LogInPage />
-                                                <Box textAlign="right" className={classes.menuButton}>
-                                                    <Button
-                                                        className={classes.redirect}
-                                                        onClick={handleRedirectRegister}
-                                                        color="primary"
-                                                    >
-                                                        Don't have an account? Sign Up
-                                                        </Button>
-                                                </Box>
-                                            </>
-                                        )}
-                                    </div>
-                                </Fade>
-                            </Modal>
-*/
