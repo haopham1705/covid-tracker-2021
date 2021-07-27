@@ -26,7 +26,7 @@
     "react-chartjs-2": "^3.0.3",
     "react-countup": "^4.4.0",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.11.0",
+    "react-hook-form": "^7.11.1",
     "react-leaflet": "^2.7.0",
     "react-logger": "^1.1.0",
     "react-redux": "^7.2.4",

@@ -153,9 +153,8 @@ function News(props) {
                         )
                     })
                     : (
-                        <div className={classes.skeleton_load}>
-                            <Card className={classes.card}>
-                                <CardActionArea >
+                        <div className={classes.skeleton_load}> 
+                                
                                     <Grid item xs>
                                         <Skeleton variant="rect" width='100%' height={258} />
                                         <Box pt={0.5}>
@@ -163,11 +162,7 @@ function News(props) {
                                             <Skeleton width="95%" height={80} />
                                         </Box>
                                     </Grid>
-                                </CardActionArea>
-                            </Card>
-
-                            <Card className={classes.card}>
-                                <CardActionArea >
+                                 
                                     <Grid item xs>
                                         <Skeleton variant="rect" width='100%' height={258} />
                                         <Box pt={0.5}>
@@ -175,11 +170,7 @@ function News(props) {
                                             <Skeleton width="95%" height={80} />
                                         </Box>
                                     </Grid>
-                                </CardActionArea>
-                            </Card>
-                            
-                            <Card className={classes.card}>
-                                <CardActionArea >
+                                 
                                     <Grid item xs>
                                         <Skeleton variant="rect" width='100%' height={258} />
                                         <Box pt={0.5}>
@@ -187,9 +178,7 @@ function News(props) {
                                             <Skeleton width="95%" height={80} />
                                         </Box>
                                     </Grid>
-                                </CardActionArea>
-                            </Card>
-
+                                 
                         </div>
                         // <h2 className="msg-not-found">Loading..</h2>
                     )}
