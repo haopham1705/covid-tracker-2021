@@ -1,9 +1,9 @@
-import {axiosNews} from "./axiosClient";
+import axiosClient from "./axiosClient";
 
 const newsApi = { 
-    getNewsPoplularity(params){
-        const url = '/everything?sortBy=popularity';
-        return axiosNews.get(url, {params});
+    getNewsTrending(params){
+        const url = '/news/trending?offset';
+        return axiosClient.get(url, {params});
     }
 };
 

@@ -1,27 +1,28 @@
 import axios from 'axios'
 
 // Axios Tracker
-const axiosTracker = axios.create({
-    baseURL: 'http://api.coronatracker.com/v3',
+const axiosClient = axios.create({
+    baseURL: 'https://api.coronatracker.com',
     header: {
         'Content-type': 'application/json',
     },
 })
 
 //request interceptor
-axiosTracker.interceptors.request.use(function (config) {
+axiosClient.interceptors.request.use(function (config) {
     //before request
     return config;
 }, function (error) {
     return Promise.reject(error);
 });
 //response interceptor
-axiosTracker.interceptors.response.use(function (response) {
+axiosClient.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {
     return Promise.reject(error);
 });
 
+export default axiosClient
 // Axios News
 // const axiosNews = axios.create({
 //     baseURL: 'https://newsapi.org/v2',

@@ -6,27 +6,28 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
+import SkeletonNews from './components/SkeletonNews';
 import newsApi from 'api/newsApi';
 import React, { useEffect, useState } from 'react'; 
 
 function News(props) {
 
-    const [data, setData] = useState();
+    const [dataNews, setDataNews] = useState();
 
-    useEffect(() => {
+    useEffect(() => { 
         const fetchNews = async () => {
             const params = {
-                qinTitle: 'covid 19',
-                from: '2021-07-10',
-                apiKey: '7530f36a6fcf4ecda75ab4eb1213a9ee',
+                limit: '100',
+                country: 'Vietnam',
             }
-            const productList = await newsApi.getNewsPoplularity(params);
-            setData(productList);
-            console.log(data)
+            const newsList = await newsApi.getNewsTrending(params);
+            setDataNews(newsList);
+            console.log(dataNews)
         };
         fetchNews();
     }, [])
-
+    console.log('news data '+dataNews)
+    
     const useStyles = makeStyles((theme) => ({
         root: { 
         },
@@ -79,13 +80,6 @@ function News(props) {
             height: 30,
             padding: '0 30px',
         },
-        skeleton_load: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            spacing: '5px',
-            flexGrow: 1,
-        },
         news_content: { 
             display: 'flex',
             flexDirection: 'column',
@@ -111,8 +105,8 @@ function News(props) {
     return (
         <div>
             <div className={classes.wrapper}>
-                {data
-                    ? data.articles.map((news) => {
+                {dataNews
+                    ? dataNews.items.map((news) => {
                         const { url, title, description, urlToImage, publishedAt } = news;
 
                         return (
@@ -152,35 +146,8 @@ function News(props) {
                             </Card>
                         )
                     })
-                    : (
-                        <div className={classes.skeleton_load}> 
-                                
-                                    <Grid item xs>
-                                        <Skeleton variant="rect" width='100%' height={258} />
-                                        <Box pt={0.5}>
-                                            <Skeleton />
-                                            <Skeleton width="95%" height={80} />
-                                        </Box>
-                                    </Grid>
-                                 
-                                    <Grid item xs>
-                                        <Skeleton variant="rect" width='100%' height={258} />
-                                        <Box pt={0.5}>
-                                            <Skeleton />
-                                            <Skeleton width="95%" height={80} />
-                                        </Box>
-                                    </Grid>
-                                 
-                                    <Grid item xs>
-                                        <Skeleton variant="rect" width='100%' height={258} />
-                                        <Box pt={0.5}>
-                                            <Skeleton />
-                                            <Skeleton width="95%" height={80} />
-                                        </Box>
-                                    </Grid>
-                                 
-                        </div>
-                        // <h2 className="msg-not-found">Loading..</h2>
+                    : ( 
+                        <SkeletonNews/> 
                     )}
             </div>
         </div>
