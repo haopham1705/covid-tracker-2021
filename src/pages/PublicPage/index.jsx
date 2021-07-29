@@ -6,7 +6,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import numeral from "numeral"; 
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import News from 'components/News';
+import News from 'pages/News';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import InfoBox from 'components/Trackers/components/InfoBox'
@@ -24,12 +24,17 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '2rem',
         textAlign: 'center',
     },
+    header: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: 'var(--primary-color)',
+        padding: '0.5rem 1rem',
+    },
     headTitle: {
         fontSize: '3rem',
         fontWeight: '550',
         color: 'var(--white-color)',
-        backgroundColor: 'var(--primary-color)',
-        padding: '0.5rem 1rem',
+
         textAlign: 'center',
     },
     menuButton: {
@@ -46,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         border: '1px solid',
         padding: '5px 8px',
-        borderRadius: '5px',
-        backgroundColor: '#07b45d',
-        color: '#fff', 
+        borderRadius: '5px', 
+        color: '#fff',
+        background: '#333'
 
     },
     redirect: {
@@ -155,8 +160,16 @@ function PublicPage(props) {
 
     return (
         <>
-            <h1 className={classes.headTitle}>Covid19 - Tracker Website </h1>
-
+        <div className={classes.header}>
+                <h1 className={classes.headTitle}>Covid19 - Tracker Website </h1>
+                <Button color="#fff" onClick={handleClickOpen}>
+                    <div className={classes.logged}>
+                        <AccountBoxIcon className={classes.menuButton} />
+                        <span style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>Sign In</span>
+                    </div>
+                </Button>
+        </div>
+            
             <Container className={classes.wrapper}>
                 <div className="tracker-content__stats">
                     <InfoBox
@@ -183,12 +196,7 @@ function PublicPage(props) {
                         total={numeral(countryInfo.deaths).format("0.0a")}
                     />
                 </div>
-                <Button color="inherit" onClick={handleClickOpen}>
-                    <div className={classes.logged}>
-                        <AccountBoxIcon className={classes.menuButton} />
-                        <span style={{ textTransform: 'capitalize' }}>Sign In</span>
-                    </div>
-                </Button>
+                
 
                 <News />
 
