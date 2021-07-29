@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import store from './redux/store'
-import App from './App';
-import { Provider } from 'react-redux';
-import reportWebVitals from './reportWebVitals'; 
-
-import i18n from 'translation/i18n';
 import { I18nextProvider } from 'react-i18next';
+import { Provider } from 'react-redux';
+import i18n from 'translation/i18n';
+import App from './App';
+import './index.css';
+import store from './redux/store';
+import reportWebVitals from './reportWebVitals';
+
 
 
 ReactDOM.render(

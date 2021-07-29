@@ -1,12 +1,12 @@
-import React from 'react'
+import { Container, makeStyles } from '@material-ui/core';
 import Header from 'components/Header';
-import TrackersGlobalMap from 'features/TrackersGlobalMap'
+import NotFound from 'components/NotFound';
 import TrackerByCountry from 'features/TrackerByCountry';
-import News from 'pages/News'
-import NotFound from 'components/NotFound'
+import TrackersGlobalMap from 'features/TrackersGlobalMap';
+import News from 'pages/News';
+import React from 'react';
 import { Route, Switch, useRouteMatch } from "react-router";
-import { Link, NavLink, Redirect } from 'react-router-dom';
-import { Container, makeStyles } from '@material-ui/core'
+import { Redirect } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({

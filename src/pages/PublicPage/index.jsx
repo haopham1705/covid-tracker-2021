@@ -3,15 +3,14 @@ import {
     Button, Container, Fade, makeStyles, Modal
 } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import numeral from "numeral"; 
+import InfoBox from 'features/TrackersGlobalMap/components/InfoBox';
+import { prettyPrintStat } from "features/TrackersGlobalMap/components/util";
+import numeral from "numeral";
+import News from 'pages/News';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import News from 'pages/News';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-import InfoBox from 'features/TrackersGlobalMap/components/InfoBox'
-import LineGraph from 'features/TrackersGlobalMap/components/LineGraph'
-import { sortData, prettyPrintStat } from "features/TrackersGlobalMap/components/util";
 
 
 

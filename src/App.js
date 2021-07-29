@@ -1,18 +1,18 @@
 
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 import NotFound from 'components/NotFound';
+import ThemeContext from 'context/Context';
 import HomePage from 'pages/HomePage';
 import PublicPage from 'pages/PublicPage';
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import GlobalLoading from './components/GlobalLoading';
 import AuthRoute from './HOCs/AuthRoute';
 import PrivateRoute from './HOCs/PrivateRoute';
+import { darkTheme, lightTheme } from './theme';
 
-import { useState, useMemo, useEffect } from 'react';
 
-import { lightTheme, darkTheme } from './theme';
-import { createTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
-import ThemeContext from 'context/Context';
 
 
 function App() {

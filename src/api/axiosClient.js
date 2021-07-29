@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 // Axios Tracker
 const axiosClient = axios.create({

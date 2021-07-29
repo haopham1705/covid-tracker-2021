@@ -1,21 +1,14 @@
 import {
-    Box, Card,
-    CardActionArea, CardContent,
-    CardMedia, Grid, Link,
-    Typography, Button,
-    ImageList, ImageListItem, ImageListItemBar, ListSubheader,
-    IconButton, InfoIcon,
-    useTheme
+    Button,
+    ImageList, ImageListItem, ImageListItemBar, Link, useTheme
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
-import SkeletonNews from './components/SkeletonNews';
 import newsApi from 'api/newsApi';
+import { concat, slice } from 'lodash';
 import React, { useEffect, useState } from 'react';
-import {
-    slice, concat,
-} from 'lodash';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import SkeletonNews from './components/SkeletonNews';
 
 
 

@@ -1,10 +1,9 @@
+import { Button } from '@material-ui/core'
 import React, { useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-import './NotFound.scss'
-import { GlobalActions } from '../../redux/slices/globalSlice'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import {Button} from '@material-ui/core'
-import { Trans, useTranslation } from 'react-i18next';
+import { GlobalActions } from '../../redux/slices/globalSlice'
+import './NotFound.scss'
 
 
 export default function NotFound() {

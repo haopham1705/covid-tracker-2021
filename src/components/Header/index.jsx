@@ -1,44 +1,37 @@
 import {
-    AppBar, Button, makeStyles, useTheme,
-    Menu,
-    MenuItem,
-    Toolbar,
-    Typography,
-    CssBaseline,
-    Divider,
-    IconButton,
+    AppBar, Button, CssBaseline,
+    Divider, Drawer, IconButton,
     List,
     ListItem,
     ListItemIcon,
-    ListItemText,
-    Drawer,
-    FormControl,
-    Select,
-} from '@material-ui/core'
-import HomeIcon from '@material-ui/icons/Home';
+    ListItemText, makeStyles, Menu,
+    MenuItem,
+    Toolbar,
+    Typography, useTheme
+} from '@material-ui/core';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ArrowDropDownSharpIcon from '@material-ui/icons/ArrowDropDownSharp';
 import AssessmentIcon from '@material-ui/icons/Assessment';
-import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-
-import clsx from 'clsx'
-import AccountBoxIcon from '@material-ui/icons/AccountBox'
-import ArrowDropDownSharpIcon from '@material-ui/icons/ArrowDropDownSharp'
-import ReceiptIcon from '@material-ui/icons/Receipt'; 
-import MenuIcon from '@material-ui/icons/Menu';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ImgLogo from 'assets/img/globe-logo2.gif'
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
-import { Link } from 'react-router-dom'
+import HomeIcon from '@material-ui/icons/Home';
+import MenuIcon from '@material-ui/icons/Menu';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import ImgLogo from 'assets/img/globe-logo2.gif';
+import clsx from 'clsx';
+import ThemeContext from 'context/Context';
+import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import i18n from 'translation/i18n';
 
-import ThemeContext from 'context/Context'
-import { useContext } from 'react';
 
-import { Trans, useTranslation } from 'react-i18next';
-import i18n from 'translation/i18n'; 
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
