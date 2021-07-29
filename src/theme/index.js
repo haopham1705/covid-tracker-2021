@@ -29,7 +29,7 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
     palette: {
         primary: {
-            main: '#01bf71'
+            main: '#333'
         },
         secondary: {
             main: '#fffff'
