@@ -11,8 +11,9 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    Drawer, 
-
+    Drawer,
+    FormControl,
+    Select,
 } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home';
 import AssessmentIcon from '@material-ui/icons/Assessment';
@@ -27,7 +28,7 @@ import ReceiptIcon from '@material-ui/icons/Receipt';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ImgLogo from 'assets/img/icon-covid.png'
+import ImgLogo from 'assets/img/globe-logo2.gif'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -36,6 +37,8 @@ import { Link } from 'react-router-dom'
 import ThemeContext from 'context/Context'
 import { useContext } from 'react';
 
+import { Trans, useTranslation } from 'react-i18next';
+import i18n from 'translation/i18n'; 
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -110,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     // },
     logoImg: {
         width: '100%',
-        maxWidth: '70px',
+        maxWidth: '65px',
         margin: '5px',
     },
     language_select: {
@@ -177,6 +180,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header({ children }, ...props) {
     const { isLoggedIn } = props
     const { handleDrawerToggle } = props;
+    const { t } = useTranslation()
     const { isDark, toggleDarkMode } = useContext(ThemeContext);
     const dispatch = useDispatch()
     const history = useHistory()
@@ -185,6 +189,7 @@ export default function Header({ children }, ...props) {
     const [open, setOpen] = useState(false)
     const [mode, setMode] = useState('login')
     const [anchorEl, setAnchorEl] = useState(null)
+    // const [language, setLanguage] = useState("en")
 
     const handleShowMenu = (event) => {
         setAnchorEl(event.currentTarget)
@@ -217,11 +222,18 @@ export default function Header({ children }, ...props) {
     }
     const handleDrawerOpen = () => {
         setOpen(true);
-    };
+    }
 
     const handleDrawerClose = () => {
         setOpen(false);
-    };
+    } 
+
+    // Change language
+    const changeLanguage = (e) => {
+        i18n.changeLanguage(e.target.value);
+        // setLanguage(e.target.value);
+    } 
+
 
     return (
         <div className={classes.root}>
@@ -283,20 +295,38 @@ export default function Header({ children }, ...props) {
                                 <Brightness7Icon color="inherit" />
                                 : <Brightness4Icon color="inherit" />}
                         </IconButton>
-                        <Button
+                        {/* <Button
                             color="inherit"
                             className={classes.personLog}
-                            aria-controls="simple-menu"
+                            aria-controls="profile_menu"
                             aria-haspopup="true"
                             onClick={handleShowMenu}
                             className={classes.language_select}
                         >VN / EN
                             <ArrowDropDownSharpIcon />
-                        </Button>
+                        </Button> */}
+                        {/* <FormControl>
+                            <Select
+                                onChange={changeLanguage}
+                                inputProps={{ 'aria-label': 'Without label' }}
+                                value={language}
+                            >
+                                <MenuItem value="en">EN</MenuItem>
+                                <MenuItem value="vn">VN</MenuItem>
+                            </Select>
+                        </FormControl> */}
+                        <select onChange={changeLanguage}>
+                            <option value="vi">
+                                Vietnamese
+                            </option>
+                            <option value="en">
+                                English
+                            </option>
+                        </select>
                         <Button
                             color="inherit"
                             className={classes.personLog}
-                            aria-controls="simple-menu"
+                            aria-controls="profile_menu"
                             aria-haspopup="true"
                             onClick={handleShowMenu}
                         >
@@ -305,14 +335,15 @@ export default function Header({ children }, ...props) {
                             <ArrowDropDownSharpIcon />
                         </Button>
                         <Menu
-                            id="simple-menu"
+                            id="profile_menu"
                             anchorEl={anchorEl}
                             keepMounted
                             open={Boolean(anchorEl)}
                             onClose={handleCloseMenu}
                         >
                             {/* <MenuItem onClick={handleCloseMenu}>Profile</MenuItem> */}
-                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            <MenuItem onClick="">{t('content.profille')}</MenuItem>
+                            <MenuItem onClick={handleLogout}>{t('content.logout')}</MenuItem>
                         </Menu>
                     </div>
                     {/* )} */}
@@ -343,25 +374,25 @@ export default function Header({ children }, ...props) {
                     <Link className={classes.menuItem} to="/">
                         <ListItem button>
                             <ListItemIcon><HomeIcon/></ListItemIcon>
-                            <ListItemText primary="Home" />
+                            <ListItemText>{t('content.home')}</ListItemText>
                         </ListItem>
                     </Link>
                     <Link className={classes.menuItem} to="/news">
                         <ListItem button>
                             <ListItemIcon><ReceiptIcon /></ListItemIcon>
-                            <ListItemText primary="News" />
+                            <ListItemText>{t('content.news')}</ListItemText>
                         </ListItem>
                     </Link>
                     <Link className={classes.menuItem} to="/trackers">
                         <ListItem button>
                             <ListItemIcon><AssessmentIcon/></ListItemIcon>
-                            <ListItemText primary="Chart" />
+                            <ListItemText>{t('content.chart')}</ListItemText>
                         </ListItem>
                     </Link>
                     <Link className={classes.menuItem} to="/">
                         <ListItem button>
                             <ListItemIcon><SettingsApplicationsIcon/></ListItemIcon>
-                            <ListItemText primary="Setting" />
+                            <ListItemText>{t('content.setting')}</ListItemText>
                         </ListItem>
                     </Link>
                 </List>

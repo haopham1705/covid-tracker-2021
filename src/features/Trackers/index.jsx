@@ -13,9 +13,12 @@ import Table from "./components/Table";
 import { sortData, prettyPrintStat } from "./components/util";
 import numeral from "numeral";
 import Map from "./components/Map";
+import { Trans, useTranslation } from 'react-i18next';
 import "leaflet/dist/leaflet.css";
 
+
 function Trackers() {
+    const {t} = useTranslation()
     const [country, setInputCountry] = useState("worldwide");
     const [countryInfo, setCountryInfo] = useState({});
     const [countries, setCountries] = useState([]);
@@ -75,7 +78,7 @@ function Trackers() {
         <div className="tracker-content">
             <div className="tracker-content__left">
                 <div className="tracker-content__header">
-                    <h1>Tracking Covid</h1>
+                    <h1>{t('content.tracking_covid')}</h1>
                     <FormControl className="tracker-content__dropdown">
                         <Select
                             variant="outlined"
@@ -92,7 +95,7 @@ function Trackers() {
                 <div className="tracker-content__stats">
                     <InfoBox
                         onClick={(e) => setCasesType("cases")}
-                        title="Coronavirus Cases"
+                        title={t('content.covid_cases')}
                         isRed
                         active={casesType === "cases"}
                         cases={prettyPrintStat(countryInfo.todayCases)}
@@ -100,14 +103,14 @@ function Trackers() {
                     />
                     <InfoBox
                         onClick={(e) => setCasesType("recovered")}
-                        title="Recovered"
+                        title={t('content.covid_recovered')}
                         active={casesType === "recovered"}
                         cases={prettyPrintStat(countryInfo.todayRecovered)}
                         total={numeral(countryInfo.recovered).format("0.0a")}
                     />
                     <InfoBox
                         onClick={(e) => setCasesType("deaths")}
-                        title="Deaths"
+                        title={t('content.covid_death')}
                         isRed
                         active={casesType === "deaths"}
                         cases={prettyPrintStat(countryInfo.todayDeaths)}
@@ -124,9 +127,9 @@ function Trackers() {
             <Card className="tracker-content__right">
                 <CardContent>
                     <div className="tracker-content__information">
-                        <h3>Live Cases by Country</h3>
+                        <h3>{t('content.live_case_country')}</h3>
                         <Table countries={tableData} />
-                        <h3>Worldwide new {casesType}</h3>
+                        <h3>{t('content.world_wide_case')} {casesType}</h3>
                         <LineGraph casesType={casesType} />
                     </div>
                 </CardContent>

@@ -7,11 +7,11 @@ const lightTheme = createTheme({
             main: '#01bf71', 
         },
         secondary: {
-            main: '#ffc400'
+            main: '#174587'
         },
         custom: {
             white: '#fff',
-            grey: '#B1B1B1'
+            grey: '#a3a3a330'
         },
         background: {
             default: 'rgb(244, 246, 248)',
@@ -39,7 +39,8 @@ const darkTheme = createTheme({
             paper: '#18191a'
         },
         custom: {
-            white: '#fff'
+            white: '#fff',
+            grey: '#a3a3a330'
         },
         type: 'dark',
         text: {

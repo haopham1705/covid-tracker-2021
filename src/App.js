@@ -2,7 +2,7 @@
 import NotFound from 'components/NotFound';
 import HomePage from 'pages/HomePage';
 import PublicPage from 'pages/PublicPage';
-import { Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import GlobalLoading from './components/GlobalLoading';
 import AuthRoute from './HOCs/AuthRoute';
@@ -55,20 +55,21 @@ function App() {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleDarkMode }}>
-      <CssBaseline />
-      <ThemeProvider theme={memoizedTheme}>
-        <div className="app">
-          <GlobalLoading />
-          <Switch>
-            <AuthRoute path="/public" component={PublicPage} />
-            <PrivateRoute path="/" component={HomePage} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </ThemeProvider>
-    </ThemeContext.Provider >
-
+    <Router>
+      <ThemeContext.Provider value={{ isDark, toggleDarkMode }}>
+        <CssBaseline />
+        <ThemeProvider theme={memoizedTheme}>
+          <div className="app">
+            <GlobalLoading />
+            <Switch>
+              <AuthRoute path="/public" component={PublicPage} />
+              <PrivateRoute path="/" component={HomePage} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </ThemeProvider>
+      </ThemeContext.Provider >
+    </Router> 
   );
 }
 

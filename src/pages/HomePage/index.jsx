@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from 'components/Header';
-import Trackers from 'components/Trackers'
+import Trackers from 'features/Trackers'
 import News from 'pages/News'
 import NotFound from 'components/NotFound'
 import { Route, Switch, useRouteMatch } from "react-router";
@@ -22,7 +22,7 @@ export default function HomePage() {
             <Header isLoggedIn={checkLogin} >
                 <Container>
                     <Switch>
-                        <Redirect from="/" to="/news" exact />
+                        <Redirect from="/" to="/home" exact />
 
                         <Route path='/news' component={News} exact />
                         <Route path='/trackers' component={Trackers} exact />

@@ -15,6 +15,9 @@ import React, { useEffect, useState } from 'react';
 import {
     slice, concat,
 } from 'lodash';
+import { Trans, useTranslation } from 'react-i18next';
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -133,6 +136,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const News = React.memo((props) => {
+    const {t} = useTranslation()
     const theme = useTheme();
     const LIMIT = 10;
 
@@ -182,8 +186,8 @@ const News = React.memo((props) => {
     }
 
     return (
-        <div className={classes.wrapper}>
-            <h3 className={classes.headingTypeNews}>Highlights</h3>
+        <div className={classes.wrapper}> 
+            <h3 className={classes.headingTypeNews}>{t('content.highlights')}</h3>
             <div className={classes.highlights}>
                 <ImageList rowHeight={280} className={classes.imageList} >
 
@@ -211,7 +215,7 @@ const News = React.memo((props) => {
             </div>
 
             {/* Vietnam News */}
-            <h3 className={classes.headingTypeNews}>Vietnam News</h3>
+            <h3 className={classes.headingTypeNews}>{t('content.vietnam_news')}</h3>
 
             <div className={classes.listNewsContent}>
                 {list

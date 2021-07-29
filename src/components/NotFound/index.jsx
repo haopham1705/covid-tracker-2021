@@ -4,8 +4,11 @@ import './NotFound.scss'
 import { GlobalActions } from '../../redux/slices/globalSlice'
 import { useDispatch } from 'react-redux'
 import {Button} from '@material-ui/core'
+import { Trans, useTranslation } from 'react-i18next';
+
 
 export default function NotFound() {
+    const {t} = useTranslation();
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(GlobalActions.showLoading())
@@ -16,8 +19,7 @@ export default function NotFound() {
 
     return (
         <div className="container not-found-content">
-            <h1>Page Not Found</h1>
-            <p>We can't find the page you're looking.</p> 
+            <h1>{t('content.not_found')}</h1>
             <br/>
             <Button href="/"color="primary" href="/">
                 Back to Home
