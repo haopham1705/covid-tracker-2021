@@ -9,9 +9,9 @@ import { useHistory } from 'react-router';
 import News from 'pages/News';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-import InfoBox from 'features/Trackers/components/InfoBox'
-import LineGraph from 'features/Trackers/components/LineGraph'
-import { sortData, prettyPrintStat } from "features/Trackers/components/util";
+import InfoBox from 'features/TrackersGlobalMap/components/InfoBox'
+import LineGraph from 'features/TrackersGlobalMap/components/LineGraph'
+import { sortData, prettyPrintStat } from "features/TrackersGlobalMap/components/util";
 
 
 

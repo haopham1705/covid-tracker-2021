@@ -12,11 +12,17 @@
     "loadmore": "Xem thêm",
     "vietnam_news": "Tin tức Việt Nam",
     "not_found": "Page này không tồn tại Vui lòng thử lại hoặc về trang chủ.",
-    "tracking_covid": "Theo Dõi Covid",
+    "tracking_covid": "Theo Dõi Covid Trên TG",
+    "covid_analytics": "Số Liệu Covid Theo Quốc Gia",
+    "country": "Quốc Gia",
+    "select_country": "Chọn quốc gia",
     "live_case_country": "Ca nhiễm theo quốc gia",
     "world_wide_case": "Ca nhiễm thế giới theo ",
-    "covid_cases": "Tổng Số Ca Nhiễm",
+    "total_cases": "Tỗng Số Ca Nhiễm",
+    "covid_cases": "Ca Đang Nhiễm",
     "covid_recovered": "Đã Hồi Phục",
-    "covid_death": "Đã Chết,"
+    "covid_death": "Đã Chết,",
+    "all": "Tất cả",
+    "day": "Ngày"
   }
 }

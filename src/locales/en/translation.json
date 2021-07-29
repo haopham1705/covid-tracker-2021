@@ -1,6 +1,6 @@
 {
   "content": {
-    "logo_title": "COVID TRACKER", 
+    "logo_title": "COVID TRACKER",
     "home": "Home",
     "news": "News",
     "chart": "Chart",
@@ -12,11 +12,17 @@
     "loadmore": "Load More",
     "vietnam_news": "Vietnam News",
     "not_found": "Page Not Found. We can't find the page you're looking.",
-    "tracking_covid": "Tracking Covid",
+    "tracking_covid": "Tracking Global Covid",
+    "covid_analytics": "Covid Analytics",
+    "country": "Country",
+    "select_country": "Select Country",
     "live_case_country": "Live Cases by Country",
     "world_wide_case": "Worldwide new ",
+    "total_cases": "Total cases",
     "covid_cases": "Coronavirus Cases",
     "covid_recovered": "Recovered",
-    "covid_death": "Death"
+    "covid_death": "Death",
+    "all": "All",
+    "day": "Days"
   }
 }

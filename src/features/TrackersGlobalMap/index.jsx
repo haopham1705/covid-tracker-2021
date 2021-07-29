@@ -17,7 +17,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import "leaflet/dist/leaflet.css";
 
 
-function Trackers() {
+function TrackersGlobalMap() {
     const {t} = useTranslation()
     const [country, setInputCountry] = useState("worldwide");
     const [countryInfo, setCountryInfo] = useState({});
@@ -138,4 +138,4 @@ function Trackers() {
     );
 };
 
-export default Trackers
+export default TrackersGlobalMap;

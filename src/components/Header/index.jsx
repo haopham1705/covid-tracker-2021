@@ -317,7 +317,7 @@ export default function Header({ children }, ...props) {
                         </FormControl> */}
                         <select onChange={changeLanguage}>
                             <option value="vi">
-                                Vietnamese
+                                Tiếng Việt
                             </option>
                             <option value="en">
                                 English
