@@ -144,7 +144,7 @@ const News = React.memo((props) => {
     useEffect(() => {
         const fetchNews = async () => {
             const paramsNewsVN = {
-                limit: '100',
+                limit: '300',
                 country: 'Vietnam',
             }
             const paramsNewsHighlights = {
