@@ -1,3 +1,3 @@
 
 
-DEMO [DEMO](https://covid19-tracker-haopham.surge.sh/).
+LIVE [DEMO](https://covid19-tracker-haopham.surge.sh/).
