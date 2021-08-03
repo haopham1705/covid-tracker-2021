@@ -10,12 +10,12 @@ function SearchBox(props) {
     useEffect(() => {
         const fetchNews = async () => {
             const params = {
-            } 
+            }
             const listCountries = await trackerApi.getCountryByName();
             setCountries(listCountries)
             console.log(listCountries)
         }
-    },[])
+    }, [])
     return (
         <>
             {/* <Autocomplete
@@ -27,7 +27,7 @@ function SearchBox(props) {
                 }}
                 renderInput={(params) => <TextField {...params} label="controlled" margin="normal" />}
             /> */}
-            
+
         </>
     );
 }

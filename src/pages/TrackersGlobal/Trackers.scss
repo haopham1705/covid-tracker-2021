@@ -1,9 +1,10 @@
 .tracker-content {
-  margin: 0 auto; 
-  padding: 10px 8px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
   flex-wrap: wrap;
+  padding: 1rem 8px;
+
   &__header {
     display: flex;
     align-items: center;
@@ -37,6 +38,9 @@
     flex: 0.9;
     margin-right: 5px;
   }
+  &__right {
+    margin-top: 1rem;
+  }
   &__information > h3 {
     // color: #222121;
     // font-weight: 400;
@@ -48,3 +52,4 @@
     margin-top: 1rem;
   }
 }
+

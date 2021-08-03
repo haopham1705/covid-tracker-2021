@@ -4,7 +4,7 @@ import numeral from "numeral";
 
 const options = {
   legend: {
-    display: true,
+    display: false,
   },
   elements: {
     point: {

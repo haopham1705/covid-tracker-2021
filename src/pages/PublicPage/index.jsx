@@ -13,7 +13,6 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import ImgLogo from 'assets/img/globe-logo2.gif';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
