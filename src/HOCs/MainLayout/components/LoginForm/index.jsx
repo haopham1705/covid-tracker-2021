@@ -116,7 +116,7 @@ export default function LoginForm() {
                             onClick={handleLogin}
                         >
                             Sign In
-                        </Button> 
+                        </Button>
                     </form>
                 </div>
             </Container>

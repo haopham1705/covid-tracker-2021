@@ -1,0 +1,50 @@
+.tracker-content {
+  margin: 0 auto; 
+  padding: 10px 8px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+  }
+  // &__header > h1 {
+  //   color: #fc3c3c;
+  //   font-size: 2rem;
+  //   font-weight: 600;
+  // }
+  &__seach {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+&__search-complete {
+  margin-right: 5px;
+}
+
+  &__dropdown {
+
+  }
+  &__stats {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__left {
+    flex: 0.9;
+    margin-right: 5px;
+  }
+  &__information > h3 {
+    // color: #222121;
+    // font-weight: 400;
+    // font-size: 1.5rem;
+    // margin-bottom: 1rem;
+  }
+
+  &__information > h3:last-of-type {
+    margin-top: 1rem;
+  }
+}

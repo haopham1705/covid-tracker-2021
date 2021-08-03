@@ -1,82 +1,52 @@
-import React, { useEffect, useState } from "react";
-import Highchart from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-import highchartsMap from "highcharts/modules/map";
+import React, { useState, useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { sortBy } from 'lodash';
+import GlobalMap from "components/Map";
+import Highlight from 'components/Highlight'
+import Summary from 'components/Summary'
+import CountrySelector from 'components/CountrySelector'
+// import TableStatistics from "components/TableStatistics";
+import "./TrackerGlobal.scss"
 
-highchartsMap(Highchart);
-const initOptions = {
-    chart: {
-        height: 300,
-    },
-    title: {
-        text: null,
-    },
-    mapNavigation: {
-        enabled: true,
-    },
-    colorAxis: {
-        min: 0,
-        stops: [
-            [0.1, "#7BCD7E"],
-            [0.2, "#8CB577"],
-            [0.3, "#97A572"],
-            [0.4, "#A2946E"],
-            [0.5, "#AF8168"],
-            [0.6, "#BA7363"],
-            [0.7, "#C95C5D"],
-            [0.8, "#D24E59"],
-            [0.9, "#D24E5A"],
-            [1, "#DD3F54"],
-        ],
-    },
-    legend: {
-        layout: "horizontal",
-        align: "right",
-        verticalAlign: "bottom",
-    },
-    series: [
-        {
-            mapData: {},
-            name: "Global Cases",
-            joinBy: ["hc-key", "key"],
-        },
-    ],
-};
+function TrackerGlobal() {
+    const { t } = useTranslation();
+    const [mapData, setMapData] = useState({});
+    const [countries, setCountries] = useState([]);
 
-function GlobalMap({ mapData, countries }) {
-    const [options, setOptions] = useState({});
-    useEffect(() => {
-        if (mapData && Object.keys(mapData).length) {
-            const data = mapData.features.map((feature, index) => {
-                const country = countries.find(
-                    (country) => country.countryInfo.iso2 === feature.id
-                );
-                return {
-                    key: feature.properties["hc-key"],
-                    value: country?.cases || index,
-                };
-            });
-            setOptions({
-                ...initOptions,
-                series: [
-                    {
-                        ...initOptions.series[0],
-                        mapData: mapData,
-                        data: data,
-                    },
-                ],
-            });
+    const getCountries = () => {
+        axios("https://disease.sh/v3/covid-19/countries")
+            .then((res) => {
+                setCountries(res.data);
+            })
+            .catch((err) => console.log("countries: ", err.response));
+    };
+    const getMapData = () => {
+        import("@highcharts/map-collection/custom/world.geo.json").then((res) =>
+            setMapData(res)
+        );
+    };
+    const fetchData = async () => {
+        try {
+            await getCountries();
+            await getMapData();
+        } catch (error) {
+            console.log(error);
         }
-    }, [mapData, countries]);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
-        <div className="analytics__map">
-            <HighchartsReact
-                highcharts={Highchart}
-                options={options}
-                constructorType="mapChart"
-            />
-        </div>
+        <>
+            <div className="global-content">
+                <GlobalMap mapData={mapData} countries={countries} />
+            </div>
+        </>
     );
 }
 
-export default GlobalMap;
+export default TrackerGlobal;

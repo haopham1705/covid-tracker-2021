@@ -18,21 +18,15 @@ function SearchBox(props) {
     },[])
     return (
         <>
-            <Autocomplete
-                freeSolo
-                id="search_country"
-                disableClearable
-                options={countries.map((country) => country.country_name)}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Search country"
-                        margin="normal"
-                        variant="outlined"
-                        InputProps={{ ...params.InputProps, type: 'search' }}
-                    />
-                )}
-            />
+            {/* <Autocomplete
+                {...defaultProps}
+                id="controlled-demo"
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} label="controlled" margin="normal" />}
+            /> */}
             
         </>
     );

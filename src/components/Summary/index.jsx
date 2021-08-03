@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Summary({ countryId, report }) {
-    const [mapData, setMapData] = useState({}); 
+    const [mapData, setMapData] = useState({});
 
     useEffect(() => {
         if (countryId) {

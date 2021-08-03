@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 // Load Highcharts modules
 highchartsMap(Highcharts);
- 
+
 const initOptions = {
     chart: {
         height: '500',
@@ -92,13 +92,13 @@ const CountryMaps = ({ mapData }) => {
 
     return (
         <>
-            <ButtonGroup style={{marginBottom: '5px'}} variant="contained" color="primary" aria-label="split button">
+            <ButtonGroup style={{ marginBottom: '5px' }} variant="contained" color="primary" aria-label="split button">
                 <Button></Button>
                 <Button
                     color="primary"
-                    size="small" 
+                    size="small"
                     aria-label="select merge strategy"
-                    aria-haspopup="menu" 
+                    aria-haspopup="menu"
                 >
                     <ArrowDropDown />
                 </Button>

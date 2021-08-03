@@ -320,12 +320,6 @@ export default function Header({ children }, ...props) {
 
                 <Divider />
                 <List>
-                    {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))} */}
                     <Link className={classes.menuItem} to="/">
                         <ListItem button>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
@@ -344,12 +338,12 @@ export default function Header({ children }, ...props) {
                             <ListItemText>{t('content.chart')}</ListItemText>
                         </ListItem>
                     </Link>
-                    <Link className={classes.menuItem} to="/global">
+                    {/* <Link className={classes.menuItem} to="/global">
                         <ListItem button>
                             <ListItemIcon><SettingsApplicationsIcon /></ListItemIcon>
                             <ListItemText>{t('content.setting')}</ListItemText>
                         </ListItem>
-                    </Link>
+                    </Link> */}
                 </List>
                 <Divider />
             </Drawer>

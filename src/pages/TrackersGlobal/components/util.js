@@ -44,7 +44,7 @@ export const showDataOnMap = (data, casesType = "cases") =>
       center={[country.countryInfo.lat, country.countryInfo.long]}
       color={casesTypeColors[casesType].hex}
       fillColor={casesTypeColors[casesType].hex}
-      fillOpacity={0.4}
+      fillOpacity={0.2}
       radius={
         Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
       }

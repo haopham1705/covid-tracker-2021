@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import SearchBox from 'components/SearchBox';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -17,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CountrySelector({ countries, handleOnChange, value }) {
     const classes = useStyles();
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     return (
         <FormControl className={classes.formControl}>
-            <SearchBox />
+
             <InputLabel shrink htmlFor='country-selector'>
                 {t('content.country')}
             </InputLabel>
@@ -39,6 +40,12 @@ export default function CountrySelector({ countries, handleOnChange, value }) {
                     </option>
                 ))}
             </NativeSelect>
+            {/* <Autocomplete
+                id="controlled-demo"
+                value={value}
+                onChange={handleOnChange}
+                renderInput={(params) => <TextField {...params} label="controlled" margin="normal" />}
+            /> */}
             <FormHelperText>{t('content.select_country')}</FormHelperText>
         </FormControl>
     );

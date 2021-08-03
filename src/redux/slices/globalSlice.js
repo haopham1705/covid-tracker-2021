@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { 
+const initialState = {
     isLoading: false,
 }
 
@@ -10,7 +10,7 @@ const globalSlice = createSlice({
     reducers: {
         showLoading(state, action) {
             state.isLoading = !state.isLoading
-        }, 
+        },
         logOut(state, action) {
             return initialState
         }

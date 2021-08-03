@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center', 
+        alignItems: 'center',
     },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%', 
         marginTop: theme.spacing(3),
     },
     submit: {
@@ -120,7 +120,7 @@ export default function RegisterForm() {
                         className={classes.submit}
                     >
                         Sign Up
-                    </Button> 
+                    </Button>
                 </form>
             </div>
         </Container>

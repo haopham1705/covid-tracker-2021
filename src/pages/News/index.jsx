@@ -6,9 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import newsApi from 'api/newsApi';
 import { concat, slice } from 'lodash';
+import TrackerGlobal from 'components/GlobalMap';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import SkeletonNews from './components/SkeletonNews'; 
+import SkeletonNews from './components/SkeletonNews';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapper: {
         maxWidth: '1200px',
+        textAlign: 'center',
+        paddingTop: '1rem',
     },
     link: {
         '&:hover': {
@@ -120,8 +123,8 @@ const useStyles = makeStyles((theme) => ({
         border: 0,
         '&:hover': {
             color: theme.palette.secondary.main,
-        } 
-    } 
+        }
+    }
 }))
 
 const News = React.memo((props) => {
@@ -152,11 +155,11 @@ const News = React.memo((props) => {
 
         //get news hightlight global
         const hightlights = await newsApi.getNewsHightlights(paramsNewsHighlights);
-        setNewsHighlights(hightlights); 
+        setNewsHighlights(hightlights);
     };
 
-    useEffect(() => { 
-        fetchNews(); 
+    useEffect(() => {
+        fetchNews();
     }, [])
 
 
@@ -175,6 +178,7 @@ const News = React.memo((props) => {
 
     return (
         <div className={classes.wrapper}>
+            <TrackerGlobal />
             <h3 className={classes.headingTypeNews}>{t('content.highlights')}</h3>
             <div className={classes.highlights}>
                 <ImageList className={classes.imageList} >

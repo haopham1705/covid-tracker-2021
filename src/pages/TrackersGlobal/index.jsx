@@ -5,7 +5,8 @@ import {
     Select,
     Card,
     CardContent,
-    TextField
+    TextField,
+    makeStyles,
 } from "@material-ui/core";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import InfoBox from "./components/InfoBox";
@@ -17,10 +18,24 @@ import Map from "./components/Map";
 import { Trans, useTranslation } from 'react-i18next';
 import "leaflet/dist/leaflet.css";
 import './Trackers.scss'
+import { Link } from "react-router-dom";
 
+const useStyles = makeStyles((theme) => ({
+    title: {
+        color:theme.palette.text.red,
+        fontSize: '2.3rem',
+        fontWeight: 650,
+    },
+    text: {
+        color: theme.palette.text.primary,
+        fontSize: '1.5rem',
+        fontWeight: 600,
+        marginTop: '1rem'
+    },
 
+}))
 function TrackersGlobalMap() {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const [country, setInputCountry] = useState("worldwide");
     const [countryInfo, setCountryInfo] = useState({});
     const [countries, setCountries] = useState([]);
@@ -54,10 +69,8 @@ function TrackersGlobalMap() {
                     setTableData(sortedData);
                 });
         };
-
         getCountriesData();
     }, []);
- 
 
     const onCountryChange = async (e) => {
         const countryCode = e.target.value;
@@ -75,12 +88,37 @@ function TrackersGlobalMap() {
                 setMapZoom(4);
             });
     };
+    const classes = useStyles()
 
     return (
         <div className="tracker-content">
             <div className="tracker-content__left">
                 <div className="tracker-content__header">
-                    <h1>{t('content.tracking_covid')}</h1>
+                    <h1 className={classes.title}>{t('content.tracking_covid')}</h1>
+                </div>
+                <div className="tracker-content__seach">
+                    <Autocomplete
+                        freeSolo
+                        id="search-complete"
+                        className="tracker-content__search-complete"
+                        disableClearable
+                        style={{ width: 300 }}
+                        options={countries.map((country) => country.name)}
+                        renderOption={(option) => (
+                            <>
+                                <Link to="/trackers" >{option}</Link>
+                            </>
+                        )}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="Search input"
+                                margin="normal"
+                                variant="outlined"
+                                InputProps={{ ...params.InputProps, type: 'search' }}
+                            />
+                        )}
+                    />
                     <FormControl className="tracker-content__dropdown">
                         <Select
                             variant="outlined"
@@ -93,31 +131,6 @@ function TrackersGlobalMap() {
                             ))}
                         </Select>
                     </FormControl>
-                </div>
-                <div style={{ width: 300 }}>
-                    {/* <Autocomplete
-                        id="free-solo-demo"
-                        freeSolo
-                        // options={top100Films.map((option) => option.title)}
-                        // renderInput={(params) => (
-                        //     <TextField {...params} label="freeSolo" margin="normal" variant="outlined" />
-                        // )}
-                    /> */}
-                    <Autocomplete
-                        freeSolo
-                        id="free-solo-2-demo"
-                        disableClearable
-                        options={countries.map((country) => country.name)}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                label="Search input"
-                                margin="normal"
-                                variant="outlined"
-                                InputProps={{ ...params.InputProps, type: 'search' }}
-                            />
-                        )}
-                    />
                 </div>
                 <div className="tracker-content__stats">
                     <InfoBox
@@ -154,9 +167,9 @@ function TrackersGlobalMap() {
             <Card className="tracker-content__right">
                 <CardContent>
                     <div className="tracker-content__information">
-                        <h3>{t('content.live_case_country')}</h3>
+                        <h3 className={classes.text}>{t('content.live_case_country')}</h3>
                         <Table countries={tableData} />
-                        <h3>{t('content.world_wide_case')} {casesType}</h3>
+                        <h3 className={classes.text}>{t('content.world_wide_case')} {casesType}</h3>
                         <LineGraph casesType={casesType} />
                     </div>
                 </CardContent>

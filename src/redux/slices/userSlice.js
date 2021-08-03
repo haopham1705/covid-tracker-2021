@@ -29,7 +29,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState: initialState,
     reducers: {
-        login(state){
+        login(state) {
             localStorage.setItem('username', state.username)
             localStorage.setItem('password', state.password)
         },
@@ -38,7 +38,7 @@ const userSlice = createSlice({
             // localStorage.removeItem('password')
             state.initialState = initialState;
         }
-    }, 
+    },
 })
 
 const { actions, reducer } = userSlice

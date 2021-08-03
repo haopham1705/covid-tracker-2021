@@ -3,8 +3,8 @@ import {
     Button, Container, Fade, makeStyles, Modal
 } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import InfoBox from 'features/TrackersGlobalMap/components/InfoBox';
-import { prettyPrintStat } from "features/TrackersGlobalMap/components/util";
+import InfoBox from 'pages/TrackersGlobal/components/InfoBox';
+import { prettyPrintStat } from "pages/TrackersGlobal/components/util";
 import numeral from "numeral";
 import News from 'pages/News';
 import React, { useEffect, useState } from 'react';
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
     headTitle: {
         fontSize: '1.8rem',
-        fontWeight: '600', 
+        fontWeight: '600',
         width: '60vw',
         color: theme.palette.text.white
     },
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.3rem',
         fontWeight: '600',
         textTransform: 'uppercase'
-    }, 
+    },
     mainLogo: {
         color: '#fff',
         display: 'flex',

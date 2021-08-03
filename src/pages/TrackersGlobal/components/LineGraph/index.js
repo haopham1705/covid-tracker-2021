@@ -4,7 +4,7 @@ import numeral from "numeral";
 
 const options = {
   legend: {
-    display: false,
+    display: true,
   },
   elements: {
     point: {
@@ -36,7 +36,7 @@ const options = {
         gridLines: {
           display: false,
         },
-        ticks: { 
+        ticks: {
           callback: function (value, index, values) {
             return numeral(value).format("0a");
           },
@@ -78,7 +78,6 @@ function LineGraph({ casesType }) {
           // buildChart(chartData);
         });
     };
-
     fetchData();
   }, [casesType]);
 

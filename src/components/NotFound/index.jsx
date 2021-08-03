@@ -7,7 +7,7 @@ import './NotFound.scss'
 
 
 export default function NotFound() {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(GlobalActions.showLoading())
@@ -19,8 +19,8 @@ export default function NotFound() {
     return (
         <div className="container not-found-content">
             <h1>{t('content.not_found')}</h1>
-            <br/>
-            <Button href="/"color="primary" href="/">
+            <br />
+            <Button href="/" color="primary" href="/">
                 Back to Home
             </Button>
         </div>

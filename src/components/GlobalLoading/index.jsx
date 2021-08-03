@@ -10,7 +10,7 @@ export default function GlobalLoading() {
     if (loading) {
         return (
             <div className="loading-content">
-                <div className="loading-content__bg-loading"></div> 
+                <div className="loading-content__bg-loading"></div>
                 {/* <CircularProgress className="loading-content__icon" /> */}
                 <LinearProgress color="secondary" />
             </div>

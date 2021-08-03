@@ -1,9 +1,8 @@
-.map {
-  height: 500px;
-  background-color: white;
-  padding: 1rem;
+.map { 
+  background-color: #fff;
+  height: 400px;
   border-radius: 20px;
-  margin-top: 16px;
+  margin: 16px 5px 5px;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
 }
 
@@ -13,7 +12,7 @@
 }
 
 .info-flag img {
-  width: 100px;
+  width: 80px;
   border-radius: 5px;
 }
 
@@ -24,12 +23,13 @@
 }
 
 .info-container {
-  width: 150px;
+  width: 100%;
+  max-width: 120px;
 }
 
 .info-flag {
   height: 80px;
-  width: 100%;
+  width: 100%; 
   background-size: cover;
   border-radius: 8px;
 }
