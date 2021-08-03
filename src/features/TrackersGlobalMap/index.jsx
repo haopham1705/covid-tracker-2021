@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./Trackers.scss";
 import {
     MenuItem,
     FormControl,
     Select,
     Card,
     CardContent,
+    TextField
 } from "@material-ui/core";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import InfoBox from "./components/InfoBox";
 import LineGraph from "./components/LineGraph";
 import Table from "./components/Table";
@@ -15,6 +16,7 @@ import numeral from "numeral";
 import Map from "./components/Map";
 import { Trans, useTranslation } from 'react-i18next';
 import "leaflet/dist/leaflet.css";
+import './Trackers.scss'
 
 
 function TrackersGlobalMap() {
@@ -44,6 +46,7 @@ function TrackersGlobalMap() {
                     const countries = data.map((country) => ({
                         name: country.country,
                         value: country.countryInfo.iso2,
+                        flag: country.countryInfo.flag,
                     }));
                     let sortedData = sortData(data);
                     setCountries(countries);
@@ -54,8 +57,7 @@ function TrackersGlobalMap() {
 
         getCountriesData();
     }, []);
-
-    console.log(casesType);
+ 
 
     const onCountryChange = async (e) => {
         const countryCode = e.target.value;
@@ -91,6 +93,31 @@ function TrackersGlobalMap() {
                             ))}
                         </Select>
                     </FormControl>
+                </div>
+                <div style={{ width: 300 }}>
+                    {/* <Autocomplete
+                        id="free-solo-demo"
+                        freeSolo
+                        // options={top100Films.map((option) => option.title)}
+                        // renderInput={(params) => (
+                        //     <TextField {...params} label="freeSolo" margin="normal" variant="outlined" />
+                        // )}
+                    /> */}
+                    <Autocomplete
+                        freeSolo
+                        id="free-solo-2-demo"
+                        disableClearable
+                        options={countries.map((country) => country.name)}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="Search input"
+                                margin="normal"
+                                variant="outlined"
+                                InputProps={{ ...params.InputProps, type: 'search' }}
+                            />
+                        )}
+                    />
                 </div>
                 <div className="tracker-content__stats">
                     <InfoBox

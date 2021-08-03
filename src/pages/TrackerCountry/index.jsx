@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { sortBy } from 'lodash';
-import CountrySelector from '../../components/CountrySelector';
-import { getCountries, getReportByCountry } from '../../api/apis';
-import Summary from '../../components/Summary';
-import Highlight from '../../components/Highlight';
+import CountrySelector from 'components/CountrySelector';
+import { getCountries, getReportByCountry } from 'api/apis';
+import Summary from 'components/Summary';
+import Highlight from 'components/Highlight';
 import { Container, Typography } from '@material-ui/core';
 import '@fontsource/roboto';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ import 'moment/locale/vi';
 
 moment.locale('vi');
 
-const TrackerByCountry = () => {
+const TrackerCountry = () => {
     const { t } = useTranslation();
     const [countries, setCountries] = useState([]);
     const [selectedCountryId, setSelectedCountryId] = useState('');
@@ -86,4 +86,4 @@ const TrackerByCountry = () => {
     );
 };
 
-export default TrackerByCountry;
+export default TrackerCountry;

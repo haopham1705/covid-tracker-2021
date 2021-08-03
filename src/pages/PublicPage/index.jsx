@@ -11,8 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-
-
+import ImgLogo from 'assets/img/globe-logo2.gif';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,18 +25,41 @@ const useStyles = makeStyles((theme) => ({
     header: {
         display: 'flex',
         justifyContent: 'space-between',
-        backgroundColor: 'var(--primary-color)',
-        padding: '0.5rem 1rem',
+        alignItems: 'center',
+        backgroundColor: theme.palette.primary.main,
+        padding: '15px',
+        boxShadow: theme.palette.shadow.box_shadow,
     },
     headTitle: {
-        fontSize: '3rem',
-        fontWeight: '550',
-        color: 'var(--white-color)',
-
-        textAlign: 'center',
+        fontSize: '1.8rem',
+        fontWeight: '600', 
+        width: '60vw',
+        color: theme.palette.text.white
+    },
+    logoImg: {
+        width: '100%',
+        maxWidth: '65px',
+        margin: '5px',
+    },
+    maintitle: {
+        fontSize: '1.3rem',
+        fontWeight: '600',
+        textTransform: 'uppercase'
+    }, 
+    mainLogo: {
+        color: '#fff',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textTransform: 'uppercase',
     },
     menuButton: {
-        marginRight: theme.spacing(2)
+        marginRight: theme.spacing(1)
+    },
+    signInText: {
+        fontSize: '1rem',
+        fontWeight: 600,
+        textTransform: 'capitalize',
     },
     title: {
         flexGrow: 1
@@ -49,11 +71,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         border: '1px solid',
-        padding: '5px 8px',
-        borderRadius: '5px', 
+        padding: '3px 2px',
+        borderRadius: '5px',
         color: '#fff',
-        background: '#333'
-
+        background: theme.palette.background.main
     },
     redirect: {
         textTransform: 'unset'
@@ -80,8 +101,8 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         maxWidth: '1200px',
         display: 'flex',
-        justifyContent: 'center', 
-        flexWrap:'wrap',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
         alignItems: 'center',
     }
 
@@ -89,13 +110,13 @@ const useStyles = makeStyles((theme) => ({
 function PublicPage(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(true); 
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const [casesType, setCasesType] = useState("cases");
     const [countryInfo, setCountryInfo] = useState({});
 
     const history = useHistory();
- 
+
 
     const handleUsername = (inputUsername) => {
         setUsername(inputUsername.target.value);
@@ -111,14 +132,14 @@ function PublicPage(props) {
             if (username === 'admin' && password === 'admin') {
                 localStorage.setItem('username', username);
                 localStorage.setItem('password', password);
-                history.push('/overview');
+                history.push('/');
                 setIsLoggedIn(true);
             } else {
                 setIsLoggedIn(false);
             }
         }
     };
-  
+
     const classes = useStyles()
     const [open, setOpen] = useState(false)
     const [mode, setMode] = useState('login')
@@ -159,16 +180,19 @@ function PublicPage(props) {
 
     return (
         <>
-        <div className={classes.header}>
-                <h1 className={classes.headTitle}>Covid19 - Tracker Website </h1>
-                <Button color="#fff" onClick={handleClickOpen}>
+            <div className={classes.header}>
+                <div className={classes.mainLogo}>
+                    <img className={classes.logoImg} src={ImgLogo} />
+                    <h2 className={classes.maintitle}>Covid Tracker</h2>
+                </div>
+                <Button onClick={handleClickOpen}>
                     <div className={classes.logged}>
                         <AccountBoxIcon className={classes.menuButton} />
-                        <span style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>Sign In</span>
+                        <span className={classes.signInText}>Sign In</span>
                     </div>
                 </Button>
-        </div>
-            
+            </div>
+
             <Container className={classes.wrapper}>
                 <div className="tracker-content__stats">
                     <InfoBox
@@ -195,10 +219,7 @@ function PublicPage(props) {
                         total={numeral(countryInfo.deaths).format("0.0a")}
                     />
                 </div>
-                
-
                 <News />
-
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"

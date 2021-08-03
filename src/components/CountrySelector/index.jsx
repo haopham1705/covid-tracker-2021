@@ -5,6 +5,8 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
+import SearchBox from 'components/SearchBox';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -19,6 +21,7 @@ export default function CountrySelector({ countries, handleOnChange, value }) {
 
     return (
         <FormControl className={classes.formControl}>
+            <SearchBox />
             <InputLabel shrink htmlFor='country-selector'>
                 {t('content.country')}
             </InputLabel>

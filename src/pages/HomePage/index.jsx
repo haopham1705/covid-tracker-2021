@@ -1,8 +1,10 @@
 import { Container, makeStyles } from '@material-ui/core';
-import Header from 'components/Header';
+import MainLayout from 'HOCs/MainLayout';
 import NotFound from 'components/NotFound';
-import TrackerByCountry from 'features/TrackerByCountry';
+// import TrackerByCountry from 'features/TrackerByCountry';
 import TrackersGlobalMap from 'features/TrackersGlobalMap';
+import TrackerGlobal from 'pages/TrackerGlobal';
+import TrackerCountry from 'pages/TrackerCountry';
 import News from 'pages/News';
 import React from 'react';
 import { Route, Switch, useRouteMatch } from "react-router";
@@ -24,19 +26,19 @@ export default function HomePage() {
     const classes = useStyles()
     return (
         <>
-            <Header isLoggedIn={checkLogin} >
+            <MainLayout isLoggedIn={checkLogin} >
                 <Container className={classes.root}>
                     <Switch>
                         <Redirect from="/home" to="/" exact />
-                        <Route path='/' component={TrackerByCountry} exact/>
+
+                        <Route path='/' component={TrackersGlobalMap} exact/>
                         <Route path='/news' component={News} exact />
-                        <Route path='/trackers' component={TrackersGlobalMap} exact />
+                        <Route path='/trackers' component={TrackerCountry} exact />
+                        <Route path='/global' component={TrackerGlobal} exact />
                         <Route component={NotFound} />
                     </Switch>
                 </Container>
-            </Header>
-            
-
+            </MainLayout> 
         </>
     )
 }

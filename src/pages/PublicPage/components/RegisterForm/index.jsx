@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
         backgroundColor: 'var(--primary-color)',
         color: '#fff',
-        fontWeight: 'bold'
+        fontWeight: '600'
     },
 }));
 

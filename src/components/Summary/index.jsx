@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import Grid from '@material-ui/core/Grid';
+import { Grid, makeStyles } from '@material-ui/core';
 
-import { getMapDataByCountryId } from '../apis';
+// import { getMapDataByCountryId } from '../apis';
 import LineChart from '../Charts/LineChart';
-import HighMaps from '../Charts/HighMaps';
+import HighMaps from '../Charts/CountryMaps';
+const getMapDataByCountryId = (countryId) =>
+    import(
+        `@highcharts/map-collection/countries/${countryId}/${countryId}-all.geo.json`
+    );
+
+const useStyles = makeStyles((theme) => ({
+    chart_content: {
+        display: 'flex',
+        flexWrap: 'wrap-reverse',
+    },
+}))
 
 export default function Summary({ countryId, report }) {
-    const [mapData, setMapData] = useState({});
+    const [mapData, setMapData] = useState({}); 
 
     useEffect(() => {
         if (countryId) {
@@ -17,10 +28,11 @@ export default function Summary({ countryId, report }) {
                 .catch((err) => console.log({ err }));
         }
     }, [countryId]);
+    const classes = useStyles()
 
     return (
-        <div style={{ height: '500px', marginTop: 10 }}>
-            <Grid container spacing={3}>
+        <>
+            <Grid container spacing={2} className={classes.chart_content}>
                 <Grid item sm={8} xs={12}>
                     <LineChart data={report} />
                 </Grid>
@@ -28,6 +40,6 @@ export default function Summary({ countryId, report }) {
                     <HighMaps mapData={mapData} />
                 </Grid>
             </Grid>
-        </div>
+        </>
     );
 }

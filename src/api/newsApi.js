@@ -1,13 +1,13 @@
-import axiosClient from "./axiosClient";
+import { axiosNews} from "./axiosClient";
 
 const newsApi = { 
     getNewsTrending(params){
         const url = '/news/trending?';
-        return axiosClient.get(url, {params});
+        return axiosNews.get(url, {params});
     },
     getNewsHightlights(params) {
         const url = '/news/trending?';
-        return axiosClient.get(url, { params });
+        return axiosNews.get(url, { params });
     },
 };
 

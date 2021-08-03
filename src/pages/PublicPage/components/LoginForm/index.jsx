@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { GlobalActions } from 'redux/slices/globalSlice'
+import { Opacity } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
         backgroundColor: 'var(--primary-color)',
         color: '#fff',
-        fontWeight: 'bold' 
+        fontWeight: '600'
     }, 
 }));
 
@@ -110,7 +111,8 @@ export default function LoginForm() {
                         <Button
                             type="submit"
                             fullWidth
-                            variant="contained" 
+                            variant="contained"
+                            color="primary"
                             className={classes.submit}
                             onClick={handleLogin}
                         >

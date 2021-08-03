@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
-import { Button, ButtonGroup } from '@material-ui/core';
+import { Button, ButtonGroup, makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 
+const useStyles = makeStyles((them) => ({
+    btn_days: {
+        marginBottom: 10,
+    },
+}))
 const generateOptions = (data) => {
     const categories = data.map((item) => moment(item.Date).format('DD/MM/YYYY'));
 
@@ -71,7 +76,6 @@ export default function LineChart({ data }) {
             case '7':
                 customData = data.slice(Math.max(data.length - 7, 1));
                 break;
-
             default:
                 customData = data;
                 break;
@@ -80,6 +84,7 @@ export default function LineChart({ data }) {
         setOptions(generateOptions(customData));
     }, [data, reportType]);
 
+    const classes = useStyles()
     return (
         <>
             <ButtonGroup
@@ -89,6 +94,7 @@ export default function LineChart({ data }) {
                     display: 'flex',
                     justifyContent: 'flex-end',
                 }}
+                className={classes.btn_days}
             >
                 <Button
                     color={reportType === 'all' ? 'secondary' : ''}

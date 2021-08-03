@@ -8,17 +8,15 @@ import newsApi from 'api/newsApi';
 import { concat, slice } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import SkeletonNews from './components/SkeletonNews';
-
-
+import SkeletonNews from './components/SkeletonNews'; 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         color: theme.palette.text.primary,
+        backgroundColor: theme.palette.background.paper,
     },
     wrapper: {
         maxWidth: '1200px',
-        paddingTop: '3rem',
     },
     link: {
         '&:hover': {
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         width: '100%',
-        cursor: 'pointer', 
+        cursor: 'pointer',
     },
     highlights: {
         backgroundColor: theme.palette.background.paper,
@@ -53,12 +51,12 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         color: theme.palette.text.primary,
-        fontSize: '1.7rem',
+        fontSize: '1.3rem',
         textAlign: 'left',
         overflow: 'hidden',
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
-        WebkitLineClamp: '2',
+        WebkitLineClamp: '3',
         '&:hover': {
             color: '#1D54A0'
         }
@@ -82,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '5px',
         fontSize: '0.8rem',
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         color: theme.palette.text.primary,
     },
     imageList: {
@@ -116,20 +114,18 @@ const useStyles = makeStyles((theme) => ({
         margin: '2rem 5px 8px'
     },
     btnLoadmore: {
-        color: theme.palette.primary.main,
+        color: theme.palette.text.green,
         background: theme.palette.custom.grey,
         width: '100%',
         border: 0,
         '&:hover': {
             color: theme.palette.secondary.main,
-        }
-
-    }
-
+        } 
+    } 
 }))
 
 const News = React.memo((props) => {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const theme = useTheme();
     const LIMIT = 10;
 
@@ -141,30 +137,29 @@ const News = React.memo((props) => {
     const [index, setIndex] = useState(LIMIT);
     console.log(list + 'LIST NEWS')
 
-    useEffect(() => {
-        const fetchNews = async () => {
-            const paramsNewsVN = {
-                limit: '300',
-                country: 'Vietnam',
-            }
-            const paramsNewsHighlights = {
-                limit: '6',
-            }
-            // get news Vietnam
-            const newsList = await newsApi.getNewsTrending(paramsNewsVN);
-            setDataNews(newsList.items);
-            setList(slice(newsList.items, 0, LIMIT))
+    const fetchNews = async () => {
+        const paramsNewsVN = {
+            limit: '300',
+            country: 'Vietnam',
+        }
+        const paramsNewsHighlights = {
+            limit: '6',
+        }
+        // get news Vietnam
+        const newsList = await newsApi.getNewsTrending(paramsNewsVN);
+        setDataNews(newsList.items);
+        setList(slice(newsList.items, 0, LIMIT))
 
-            //get news hightlight global
-            const hightlights = await newsApi.getNewsHightlights(paramsNewsHighlights);
-            setNewsHighlights(hightlights);
-            // console.log('highlight: ' + newsHighlights)
-        };
-        fetchNews();
+        //get news hightlight global
+        const hightlights = await newsApi.getNewsHightlights(paramsNewsHighlights);
+        setNewsHighlights(hightlights); 
+    };
 
+    useEffect(() => { 
+        fetchNews(); 
     }, [])
 
-    
+
 
     const classes = useStyles()
     const LENGTH = 50;
@@ -179,10 +174,10 @@ const News = React.memo((props) => {
     }
 
     return (
-        <div className={classes.wrapper}> 
+        <div className={classes.wrapper}>
             <h3 className={classes.headingTypeNews}>{t('content.highlights')}</h3>
             <div className={classes.highlights}>
-                <ImageList rowHeight={280} className={classes.imageList} >
+                <ImageList className={classes.imageList} >
 
                     {
                         newsHighlights
@@ -241,16 +236,12 @@ const News = React.memo((props) => {
                             </Link>
                         )
                     })
-
                     : (
                         <SkeletonNews />
                     )}
                 {showMore && <Button onClick={loadMoreNews} className={classes.btnLoadmore}> Load More </Button>}
-
             </div>
-
         </div>
-
     );
 })
 

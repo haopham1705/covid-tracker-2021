@@ -3,10 +3,16 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import highchartsMap from 'highcharts/modules/map';
 import { cloneDeep } from 'lodash';
+import { useTranslation } from 'react-i18next';
+import { Button, ButtonGroup, makeStyles } from '@material-ui/core';
+import SearchBox from 'components/SearchBox';
+import { ArrowDropDown } from '@material-ui/icons';
+import classNames from 'classnames';
+
 
 // Load Highcharts modules
 highchartsMap(Highcharts);
-
+ 
 const initOptions = {
     chart: {
         height: '500',
@@ -28,23 +34,30 @@ const initOptions = {
         ],
     },
     legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'bottom',
+        layout: 'horizontal',
+        align: 'center',
+        horizontalAlign: 'bottom',
     },
     series: [
         {
-            name: 'Dân số',
+            name: 'Cases',
             joinBy: ['hc-key', 'key'],
         },
     ],
 };
 
-const HighMaps = ({ mapData }) => {
+
+const CountryMaps = ({ mapData }) => {
     const [options, setOptions] = useState({});
+    const [casesNum, setCasesNum] = useState();
     const [mapLoaded, setMapLoaded] = useState(false);
     const chartRef = useRef(null);
 
+    // const useStyles = makeStyles((theme) => ({
+    //     btn: {
+    //         marginTop: '10px',
+    //     }
+    // }));
     useEffect(() => {
         if (mapData && Object.keys(mapData).length) {
             console.log({ mapData });
@@ -78,17 +91,30 @@ const HighMaps = ({ mapData }) => {
     if (!mapLoaded) return null;
 
     return (
-        <HighchartsReact
-            highcharts={Highcharts}
-            options={cloneDeep(options)}
-            constructorType={'mapChart'}
-            ref={chartRef}
-        />
+        <>
+            <ButtonGroup style={{marginBottom: '5px'}} variant="contained" color="primary" aria-label="split button">
+                <Button></Button>
+                <Button
+                    color="primary"
+                    size="small" 
+                    aria-label="select merge strategy"
+                    aria-haspopup="menu" 
+                >
+                    <ArrowDropDown />
+                </Button>
+            </ButtonGroup>
+            <HighchartsReact
+                highcharts={Highcharts}
+                options={cloneDeep(options)}
+                constructorType={'mapChart'}
+                ref={chartRef}
+            />
+        </>
     );
 };
 
-HighMaps.defaultProps = {
+CountryMaps.defaultProps = {
     mapData: {},
 };
 
-export default React.memo(HighMaps);
+export default React.memo(CountryMaps);

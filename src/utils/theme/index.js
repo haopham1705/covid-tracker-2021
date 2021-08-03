@@ -1,5 +1,4 @@
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { useState } from 'react';
+import { createTheme } from '@material-ui/core/styles';
 import typography from './typography';
 const lightTheme = createTheme({
     palette: {
@@ -20,8 +19,13 @@ const lightTheme = createTheme({
         type: 'light',
         text: {
             primary: '#000',
-            secondary: '#000'
+            secondary: '#333',
+            green: '#01bf71',
+            white: '#fff'
         },
+        shadow: {
+            box_shadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+        }
     },
     typography
 });
@@ -45,7 +49,12 @@ const darkTheme = createTheme({
         type: 'dark',
         text: {
             primary: '#fff',
-            secondary: '#fff'
+            secondary: '#fff',
+            green: '#01bf71',
+            white: '#fff'
+        },
+        shadow: {
+            box_shadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
         }
     },
     typography

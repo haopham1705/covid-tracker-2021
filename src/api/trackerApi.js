@@ -1,18 +1,23 @@
-import axiosClient from "./axiosClient";
+import { axiosTracker} from "./axiosClient";
 
 const trackerApi = {
-    getSummaryTracker(params) {
-        const url = '/summary';
-        return axiosClient.get(url, { params });
+    getSummaryGlobal(params) {
+        const url = '/all';
+        return axiosTracker.get(url, { params });
     },
-    getCountryName(params) {
+    getCountries(params) {
         const url = '/countries';
-        return axiosClient.get(url, { params });
+        return axiosTracker.get(url, { params });
     },
-    getStats(params) {
-        const url = '/stats';
-        return axiosClient.get(url, { params });
-    } 
+    getStatsByCountry(country, params) {
+        const url = `/historical/${country}`;
+        return axiosTracker.get(url, { params });
+    },
+    getStatsByCountry(params){
+        const url = '/historical/all'
+        return axiosTracker.get(url, { params });
+    },
+
 }
 
 export default trackerApi

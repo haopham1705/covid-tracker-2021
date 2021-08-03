@@ -1,3 +1,4 @@
+import { Select } from '@material-ui/core';
 import {
     AppBar, Button, CssBaseline,
     Divider, Drawer, IconButton,
@@ -28,10 +29,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import i18n from 'translation/i18n';
-
-
-
+import i18n from 'utils/translation/i18n';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -58,26 +56,25 @@ const useStyles = makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'space-between',
-    }, 
+    },
     maintitle: {
-
+        fontSize: '1.3rem',
+        fontWeight: '600',
+        textTransform: 'uppercase'
     },
     textLogo: {
         marginLeft: 9,
         color: theme.palette.text.primary,
     },
     mainLogo: {
-        color: 'white',
+        color: '#fff',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        fontWeight: 'bold',
-        fontSize: '1.8rem',
         textTransform: 'uppercase',
-
     },
-    headerMenu: { 
-
+    headerMenu: {
+        display: 'flex'
     },
     logged: {
         display: 'flex',
@@ -110,10 +107,12 @@ const useStyles = makeStyles((theme) => ({
         margin: '5px',
     },
     language_select: {
+        width: '55%',
+        textAlign: 'center',
     },
 
     menuButton: {
-        marginRight: 36,
+        marginRight: 5,
     },
     hide: {
         display: 'none',
@@ -149,11 +148,11 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        paddingTop: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -182,7 +181,7 @@ export default function Header({ children }, ...props) {
     const [open, setOpen] = useState(false)
     const [mode, setMode] = useState('login')
     const [anchorEl, setAnchorEl] = useState(null)
-    // const [language, setLanguage] = useState("en")
+    const [lang, setLang] = useState('en')
 
     const handleShowMenu = (event) => {
         setAnchorEl(event.currentTarget)
@@ -213,20 +212,20 @@ export default function Header({ children }, ...props) {
         history.push('/');
         handleCloseMenu()
     }
+
     const handleDrawerOpen = () => {
         setOpen(true);
     }
 
     const handleDrawerClose = () => {
         setOpen(false);
-    } 
+    }
 
     // Change language
     const changeLanguage = (e) => {
         i18n.changeLanguage(e.target.value);
-        // setLanguage(e.target.value);
-    } 
-
+        setLang(e.target.value);
+    }
 
     return (
         <div className={classes.root}>
@@ -244,7 +243,7 @@ export default function Header({ children }, ...props) {
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
                         <MenuIcon />
-                        
+
                     </IconButton>
                     <Typography variant="h6" className={clsx(classes.textLogo, open && classes.hide)}>
                         <Link className={classes.link} to="/">
@@ -255,67 +254,16 @@ export default function Header({ children }, ...props) {
                         </Link>
                     </Typography>
 
-
-                    {/* {!isLoggedIn ? (  */}
-                    {/* <Button color="inherit" onClick={handleClickOpen}>
-                                <div className={classes.logged}>
-                                    <AccountBoxIcon className={classes.menuButton} />
-                                    <span style={{ textTransform: 'none' }}>Sign-in / Sign-up</span>
-                                </div>
-                            </Button> */}
-                    {/* ) : ( */}
                     <div className={clsx(classes.headerMenu, open && classes.hide)}>
-                        {/* <Button style={{ marginRight: '15px' }}>
-                            <Link className={classes.menuItem} to="/news">
-                                News
-                            </Link>
-                        </Button>
-                        <Button style={{ marginRight: '15px' }}>
-                            <Link className={classes.menuItem} to="/trackers">
-                                Trackers
-                            </Link>
-                        </Button> */}
 
-
-                        {/* <Link style={{ marginRight: '10px' }} className={classes.menuItem} to="/">
-                                     Welcome Admin
-                                    </Link>  */}
                         <IconButton
                             onClick={toggleDarkMode}
-                            // className={classNames({ [classes.initAppbarElement]: !showAppBar })}
+                        // className={classNames({ [classes.initAppbarElement]: !showAppBar })}
                         >
                             {isDark ?
                                 <Brightness7Icon color="inherit" />
                                 : <Brightness4Icon color="inherit" />}
                         </IconButton>
-                        {/* <Button
-                            color="inherit"
-                            className={classes.personLog}
-                            aria-controls="profile_menu"
-                            aria-haspopup="true"
-                            onClick={handleShowMenu}
-                            className={classes.language_select}
-                        >VN / EN
-                            <ArrowDropDownSharpIcon />
-                        </Button> */}
-                        {/* <FormControl>
-                            <Select
-                                onChange={changeLanguage}
-                                inputProps={{ 'aria-label': 'Without label' }}
-                                value={language}
-                            >
-                                <MenuItem value="en">EN</MenuItem>
-                                <MenuItem value="vn">VN</MenuItem>
-                            </Select>
-                        </FormControl> */}
-                        <select onChange={changeLanguage}>
-                            <option value="vi">
-                                Tiếng Việt
-                            </option>
-                            <option value="en">
-                                English
-                            </option>
-                        </select>
                         <Button
                             color="inherit"
                             className={classes.personLog}
@@ -323,7 +271,6 @@ export default function Header({ children }, ...props) {
                             aria-haspopup="true"
                             onClick={handleShowMenu}
                         >
-
                             <AccountBoxIcon />
                             <ArrowDropDownSharpIcon />
                         </Button>
@@ -351,11 +298,26 @@ export default function Header({ children }, ...props) {
                     paper: classes.drawerPaper,
                 }}
             >
+
                 <div className={classes.drawerHeader}>
+                    <Select
+                        onChange={changeLanguage}
+                        value={lang}
+                        displayEmpty
+                        className={classes.language_select}
+                        inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                        <MenuItem value="vi">Tiếng Việt</MenuItem>
+                        <MenuItem value="en">English</MenuItem>
+                    </Select>
+
+
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
+
                 </div>
+
                 <Divider />
                 <List>
                     {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -366,7 +328,7 @@ export default function Header({ children }, ...props) {
                     ))} */}
                     <Link className={classes.menuItem} to="/">
                         <ListItem button>
-                            <ListItemIcon><HomeIcon/></ListItemIcon>
+                            <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText>{t('content.home')}</ListItemText>
                         </ListItem>
                     </Link>
@@ -378,13 +340,13 @@ export default function Header({ children }, ...props) {
                     </Link>
                     <Link className={classes.menuItem} to="/trackers">
                         <ListItem button>
-                            <ListItemIcon><AssessmentIcon/></ListItemIcon>
+                            <ListItemIcon><AssessmentIcon /></ListItemIcon>
                             <ListItemText>{t('content.chart')}</ListItemText>
                         </ListItem>
                     </Link>
-                    <Link className={classes.menuItem} to="/">
+                    <Link className={classes.menuItem} to="/global">
                         <ListItem button>
-                            <ListItemIcon><SettingsApplicationsIcon/></ListItemIcon>
+                            <ListItemIcon><SettingsApplicationsIcon /></ListItemIcon>
                             <ListItemText>{t('content.setting')}</ListItemText>
                         </ListItem>
                     </Link>

@@ -10,10 +10,7 @@ import './App.scss';
 import GlobalLoading from './components/GlobalLoading';
 import AuthRoute from './HOCs/AuthRoute';
 import PrivateRoute from './HOCs/PrivateRoute';
-import { darkTheme, lightTheme } from './theme';
-
-
-
+import { darkTheme, lightTheme } from './utils/theme'; 
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -69,7 +66,7 @@ function App() {
           </div>
         </ThemeProvider>
       </ThemeContext.Provider >
-    </Router> 
+    </Router>
   );
 }
 

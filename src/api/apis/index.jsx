@@ -11,7 +11,8 @@ export const getReportByCountry = (slug) =>
             .format()}`
     );
 
-export const getMapDataByCountryId = (countryId) =>
-    import(
-        `@highcharts/map-collection/countries/${countryId}/${countryId}-all.geo.json`
-    );
+// export const getMapDataByCountryId = (countryId) =>
+//     import(
+//         `@highcharts/map-collection/countries/${countryId}/${countryId}-all.geo.json`
+//     );
+ 

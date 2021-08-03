@@ -1,7 +1,7 @@
 export default {
-    // fontFamily: [
-    //     'Roboto'
-    // ].join(','),
+    fontFamily: [
+        'Roboto'
+    ].join(','),
     h1: {
         fontSize: 40,
         '@media screen and (max-width:768px)': {
