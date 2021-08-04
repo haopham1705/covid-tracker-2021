@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '15px',
     },
     media: {
-        height: 250,
+        height: 200,
         width: '40%',
         objectFit: 'cover',
         padding: '8px 4px',

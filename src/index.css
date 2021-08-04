@@ -9,8 +9,19 @@
 
   --header-height: 120px;
   --navbar-height: 34px;
-  /* --header-with-search-height: --header-height - --navbar-height; */
   --header-sort-bar-height: 46px;
+}
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #00cc99;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb {
+  background: #6600ff;
+  border-radius: 50px;
 }
 * {
   box-sizing: inherit;
