@@ -46,6 +46,12 @@ const useStyles = makeStyles((theme) => ({
             boxShadow: '0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)',
         }
     },
+    content: {
+        display: 'flex',
+    },
+    contentText: {
+        padding: '15px',
+    },
     media: {
         height: 250,
         width: '40%',
@@ -216,27 +222,31 @@ const News = React.memo((props) => {
 
                         return (
 
-                            <Link className={classes.link} key={nid}>
+                            <Link href={url} className={classes.link} key={nid}>
                                 {news ? (
-                                    <img
-                                        className={classes.media}
-                                        src={urlToImage}
-                                        alt={title}
-                                    />
+                                    <div className={classes.listNewsContentItem}>
+                                        <div className={classes.title}  >
+                                            {title}
+                                        </div>
+                                        <div className={classes.content}>
+                                            <img
+                                                className={classes.media}
+                                                src={urlToImage}
+                                                alt={title}
+                                            />
+                                            <div className={classes.contentText}>
+                                                <div className={classes.discription}>
+                                                    {description}
+                                                </div>
+                                                <div className={classes.date_news}>
+                                                    {publishedAt}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 ) : (
                                     <Skeleton variant="rect" width='100%' height={258} />
                                 )}
-                                <div className={classes.listNewsContentItem}>
-                                    <div className={classes.title}  >
-                                        {title}
-                                    </div>
-                                    <div className={classes.discription}>
-                                        {description}
-                                    </div>
-                                    <div className={classes.date_news}>
-                                        {publishedAt}
-                                    </div>
-                                </div>
                             </Link>
                         )
                     })

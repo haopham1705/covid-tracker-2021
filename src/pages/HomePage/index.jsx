@@ -13,6 +13,7 @@ import { Redirect } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     root: {
         paddingTop: '3rem',
+        backgroundColor: theme.palette.background.paper,
     },
 }))
 export default function HomePage() {

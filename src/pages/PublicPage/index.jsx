@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     wrapper: {
         paddingTop: '2rem',
         textAlign: 'center',
+        backgroundColor: theme.palette.background.paper,
     },
     header: {
         display: 'flex',

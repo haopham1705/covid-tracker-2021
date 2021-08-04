@@ -3,7 +3,8 @@ import typography from './typography';
 const lightTheme = createTheme({
     palette: {
         primary: {
-            main: '#01bf71', 
+            main: '#01bf71',
+            white: '#fff'
         },
         secondary: {
             main: '#174587'
@@ -35,7 +36,8 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
     palette: {
         primary: {
-            main: '#333'
+            main: '#333',
+            white: '#fff'
         },
         secondary: {
             main: '#fffff'
